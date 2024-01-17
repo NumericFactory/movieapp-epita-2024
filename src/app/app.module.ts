@@ -9,6 +9,7 @@ import { MovieDetailViewComponent } from './views/movie-detail-view/movie-detail
 import { ActionbarComponent } from './views/movie-list-view/actionbar/actionbar.component';
 import { SearchbarComponent } from './shared/components/searchbar/searchbar.component';
 import { CardComponent } from './shared/components/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CardComponent } from './shared/components/card/card.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
