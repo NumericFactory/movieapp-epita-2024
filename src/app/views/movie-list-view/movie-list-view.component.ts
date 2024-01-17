@@ -17,7 +17,6 @@ export class MovieListViewComponent {
   ngOnInit() {
     this.movieSvc.getMoviesFromApi()
       .subscribe((data: any) => this.movies = data.results);
-
   }
 
 

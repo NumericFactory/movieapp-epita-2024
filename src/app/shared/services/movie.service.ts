@@ -14,7 +14,7 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   getMoviesFromApi(): Observable<any> {
-    const ENDPOINT = '/discover/movie';
+    const ENDPOINT = '/discover/movie?language=fr&primary_release_year=1940';
     const HEADERS = new HttpHeaders({
       Authorization: 'Bearer ' + this.API_TOKEN,
       accept: 'application/json'
