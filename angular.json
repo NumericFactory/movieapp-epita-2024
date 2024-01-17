@@ -37,6 +37,7 @@
               "src/assets"
             ],
             "styles": [
+              "bootrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
