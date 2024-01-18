@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
+  @Input() movie: any;
+
+  getFullImageUrl(fragmentUrl: string) {
+    return 'https://image.tmdb.org/t/p/w500' + fragmentUrl;
+  }
 
 }

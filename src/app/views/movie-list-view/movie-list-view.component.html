@@ -1,5 +1,8 @@
-<ul>
-    <li *ngFor="let movie of movies">
-        <h2>{{movie?.title}}</h2>
-    </li>
-</ul>
+<div class="row">
+
+    <!-- on itere une .col par movie-->
+    <div *ngFor="let itemMovie of movies" class="col-3">
+        <app-card [movie]="itemMovie"></app-card>
+    </div>
+
+</div>

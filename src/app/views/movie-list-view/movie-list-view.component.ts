@@ -8,6 +8,7 @@ import { MovieService } from '../../shared/services/movie.service';
 })
 export class MovieListViewComponent {
 
+  // variable d'affichage
   movies: any[] = [];
 
   constructor(private movieSvc: MovieService) {
@@ -15,8 +16,10 @@ export class MovieListViewComponent {
   }
 
   ngOnInit() {
+
     this.movieSvc.getMoviesFromApi()
-      .subscribe((data: any) => this.movies = data.results);
+      .subscribe((response: any) => this.movies = response.results);
+
   }
 
 

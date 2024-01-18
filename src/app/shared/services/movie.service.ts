@@ -14,11 +14,19 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   getMoviesFromApi(): Observable<any> {
-    const ENDPOINT = '/discover/movie';
-    const HEADERS = new HttpHeaders({
-      Authorization: 'Bearer ' + this.API_TOKEN,
-      accept: 'application/json'
-    });
-    return this.http.get(this.TMDB_URL + ENDPOINT, { headers: HEADERS }); // Observable
+    const ENDPOINT = `/discover/movie`;
+    // const HEADERS = new HttpHeaders({
+    //   Authorization: 'Bearer ' + this.API_TOKEN,
+    //   accept: 'application/json'
+    // });
+    let options = {
+      headers: {
+        Authorization: 'Bearer ' + this.API_TOKEN,
+        accept: 'application/json'
+      },
+      params: { language: 'fr' }
+    }
+    // this.http.get(url, {headers: value, params:value})
+    return this.http.get(this.TMDB_URL + ENDPOINT, options); // this.http.get(url) retourne un Observable
   }
 }
