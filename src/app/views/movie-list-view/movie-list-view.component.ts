@@ -11,15 +11,11 @@ export class MovieListViewComponent {
   // variable d'affichage
   movies: any[] = [];
 
-  constructor(private movieSvc: MovieService) {
-
-  }
+  constructor(private movieSvc: MovieService) { }
 
   ngOnInit() {
-
     this.movieSvc.getMoviesFromApi()
       .subscribe((response: any) => this.movies = response.results);
-
   }
 
 

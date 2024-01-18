@@ -27,6 +27,9 @@ export class MovieService {
       params: { language: 'fr' }
     }
     // this.http.get(url, {headers: value, params:value})
-    return this.http.get(this.TMDB_URL + ENDPOINT, options); // this.http.get(url) retourne un Observable
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+    //.pipe(
+    // transforme moviesFromApi -> moviesInFrondEndModel
+    //);
   }
 }

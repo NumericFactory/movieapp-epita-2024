@@ -1,8 +1,10 @@
 <div class="row">
 
     <!-- on itere une .col par movie-->
-    <div *ngFor="let itemMovie of movies" class="col-3">
+    @for (itemMovie of movies; track itemMovie.id) {
+    <div class="col-3">
         <app-card [movie]="itemMovie"></app-card>
     </div>
+    }
 
 </div>
