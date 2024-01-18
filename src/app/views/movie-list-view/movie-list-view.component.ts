@@ -16,7 +16,10 @@ export class MovieListViewComponent {
 
   ngOnInit() {
     this.movieSvc.getMoviesFromApi()
-      .subscribe((data: MovieModel[]) => this.movies = data);
+      .subscribe((data: MovieModel[]) => {
+        console.log(data);
+        this.movies = data
+      });
   }
 
 
