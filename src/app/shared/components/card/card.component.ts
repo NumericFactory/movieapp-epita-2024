@@ -8,7 +8,7 @@ import { MovieModel } from '../../models/movie.model';
   styleUrl: './card.component.scss'
 })
 export class CardComponent implements OnInit {
-  @Input() movie!: any;
+  @Input() movie!: MovieModel;
 
   ngOnInit(): void {
 

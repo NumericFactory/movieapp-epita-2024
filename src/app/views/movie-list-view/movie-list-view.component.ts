@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../shared/services/movie.service';
+import { MovieModel } from '../../shared/models/movie.model';
 
 @Component({
   selector: 'app-movie-list-view',
@@ -9,13 +10,13 @@ import { MovieService } from '../../shared/services/movie.service';
 export class MovieListViewComponent {
 
   // variable d'affichage
-  movies: any[] = [];
+  movies: MovieModel[] = [];
 
   constructor(private movieSvc: MovieService) { }
 
   ngOnInit() {
     this.movieSvc.getMoviesFromApi()
-      .subscribe((response: any) => this.movies = response.results);
+      .subscribe((data: MovieModel[]) => this.movies = data);
   }
 
 

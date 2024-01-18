@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, filter, map, pluck } from 'rxjs';
+import { MovieModel } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getMoviesFromApi(): Observable<any> {
+  getMoviesFromApi(): Observable<MovieModel[]> {
     const ENDPOINT = `/discover/movie`;
     // const HEADERS = new HttpHeaders({
     //   Authorization: 'Bearer ' + this.API_TOKEN,
@@ -27,9 +28,9 @@ export class MovieService {
       params: { language: 'fr' }
     }
     // this.http.get(url, {headers: value, params:value})
-    return this.http.get(this.TMDB_URL + ENDPOINT, options)
-    //.pipe(
-    // transforme moviesFromApi -> moviesInFrondEndModel
-    //);
+    return this.http.get(this.TMDB_URL + ENDPOINT, options).pipe(
+      map((response: any) => response.results.map((movieFromApi: any) => new MovieModel(movieFromApi))),
+    )
+
   }
 }
