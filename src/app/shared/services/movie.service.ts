@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,11 +14,11 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   getMoviesFromApi(): Observable<any> {
-    const ENDPOINT = '/discover/movie?language=fr&primary_release_year=1940';
+    const ENDPOINT = '/discover/movie';
     const HEADERS = new HttpHeaders({
       Authorization: 'Bearer ' + this.API_TOKEN,
       accept: 'application/json'
-    })
+    });
     return this.http.get(this.TMDB_URL + ENDPOINT, { headers: HEADERS }); // Observable
   }
 }
