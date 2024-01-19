@@ -1,1 +1,9 @@
-<p>tv-list-view works!</p>
+<div class="row g-4 p-5">
+    <h1>Tv & séries</h1>
+    <!-- on itere une .col par movie-->
+    @for (itemTvShow of tvShows; track itemTvShow.id) {
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3 animate__animated animate__fadeInUp">
+        <app-card [item]="itemTvShow"></app-card>
+    </div>
+    }
+</div>

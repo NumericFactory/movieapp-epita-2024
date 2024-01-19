@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
+import { TvShowModel } from '../models/tv-show.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,25 @@ export class MovieService {
       map((response: any) =>
         response.results.map(
           (movieFromApi: any) => new MovieModel(movieFromApi)
+        )
+      ),
+    )
+  }
+
+
+  getTvShowFromApi(): Observable<TvShowModel[]> {
+    const ENDPOINT = `/discover/tv`;
+    let options = {
+      headers: {
+        Authorization: 'Bearer ' + this.API_TOKEN,
+        accept: 'application/json'
+      },
+      params: { language: 'fr' }
+    }
+    return this.http.get(this.TMDB_URL + ENDPOINT, options).pipe(
+      map((response: any) =>
+        response.results.map(
+          (movieFromApi: any) => new TvShowModel(movieFromApi)
         )
       ),
     )

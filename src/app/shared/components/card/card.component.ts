@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MovieModel } from '../../models/movie.model';
+import { TvShowModel } from '../../models/tv-show.model';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { MovieModel } from '../../models/movie.model';
   styleUrl: './card.component.scss'
 })
 export class CardComponent implements OnInit {
-  @Input() movie!: MovieModel;
+  @Input() item!: MovieModel | TvShowModel;
 
   ngOnInit(): void {
 
