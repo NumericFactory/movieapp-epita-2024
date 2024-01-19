@@ -3,7 +3,7 @@
     <!-- on itere une .col par movie-->
     @for (itemMovie of movies; track itemMovie.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 animate__animated animate__fadeInUp">
-        <app-card [item]="itemMovie"></app-card>
+        <app-card [routerLink]="['movie-detail', itemMovie.id]" [item]="itemMovie"></app-card>
     </div>
     }
 </div>
