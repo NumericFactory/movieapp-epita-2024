@@ -10,6 +10,7 @@ import { ActionbarComponent } from './views/movie-list-view/actionbar/actionbar.
 import { SearchbarComponent } from './shared/components/searchbar/searchbar.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TvListViewComponent } from './views/tv-list-view/tv-list-view.component';
 
 
 @NgModule({
@@ -20,12 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
     MovieDetailViewComponent,
     ActionbarComponent,
     SearchbarComponent,
-    CardComponent
+    CardComponent,
+    TvListViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
