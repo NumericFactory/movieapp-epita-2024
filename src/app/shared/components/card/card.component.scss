@@ -1,9 +1,13 @@
 .card {
-    background: #13151c;
+    background: transparent;
     transition-duration: .3s;
     z-index: 999;
     border: 3px solid transparent;
-    padding: 3px;
+    padding: 1px;
+}
+
+.card img {
+    border-radius: 7px;
 }
 
 .card:hover {

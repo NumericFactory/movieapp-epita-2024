@@ -2,7 +2,9 @@
 // importer bootstrap
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'animate.css/animate.css';
+@import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 body {
-    background: #13151c;
+    background-color: #13151c;
+    background: url('/assets/body-bkg.png') 50%/cover no-repeat fixed;
 }

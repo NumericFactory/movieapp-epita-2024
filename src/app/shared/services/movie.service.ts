@@ -9,12 +9,11 @@ import { TvShowModel } from '../models/tv-show.model';
 })
 export class MovieService {
 
+
   private TMDB_URL: string = 'https://api.themoviedb.org/3';
   private API_TOKEN: string = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZmRlYjY2MWFhYTAwNmIxZTRmMzZmOTkwYTVmZDhmZCIsInN1YiI6IjU5ZDZiMDhiYzNhMzY4NTU3ZDAwMDQxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.569-rPTcXUPOapO2e4uIsfSVs6KDPK0yFQ74mmsHSpo';
 
-
   constructor(private http: HttpClient) { }
-
   /*
     Observable.pipe() return un Observable
 
@@ -27,6 +26,12 @@ export class MovieService {
     Ainsi on délégue totalement au service la responsabilité de mapper les
     reponses API en modeles d'objets côté front-end
   */
+
+  /**
+   * API TMDB
+   * endpoint : /discover/movie
+   * @returns @Observable<MovieModel>
+   */
   getMoviesFromApi(): Observable<MovieModel[]> {
     const ENDPOINT = `/discover/movie`;
     let options = {
@@ -36,16 +41,22 @@ export class MovieService {
       },
       params: { language: 'fr' }
     }
-    return this.http.get(this.TMDB_URL + ENDPOINT, options).pipe(
-      map((response: any) =>
-        response.results.map(
-          (movieFromApi: any) => new MovieModel(movieFromApi)
+
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map((response: any) =>
+          response.results.map(
+            (movieFromApi: any) => new MovieModel(movieFromApi)
+          )
         )
-      ),
-    )
+      )
   }
 
-
+  /**
+   * API TMDB
+   * endpoint : /discover/tv
+   * @returns @Observable<TvShowModel[]>
+   */
   getTvShowFromApi(): Observable<TvShowModel[]> {
     const ENDPOINT = `/discover/tv`;
     let options = {
@@ -55,12 +66,41 @@ export class MovieService {
       },
       params: { language: 'fr' }
     }
-    return this.http.get(this.TMDB_URL + ENDPOINT, options).pipe(
-      map((response: any) =>
-        response.results.map(
-          (movieFromApi: any) => new TvShowModel(movieFromApi)
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map((response: any) =>
+          response.results.map(
+            (movieFromApi: any) => new TvShowModel(movieFromApi)
+          )
         )
-      ),
-    )
+      );
   }
+
+
+  /**
+   * API TMDB
+   * endpoint: /movie/{id}
+   * queryParam: append_to_response=videos
+   * @returns @Observable<MovieModel>
+   */
+  getMovieFromApi(id: string): Observable<MovieModel> {
+    const ENDPOINT = `/movie/${id}`;
+    let options = {
+      headers: {
+        Authorization: 'Bearer ' + this.API_TOKEN,
+        accept: 'application/json'
+      },
+      params: {
+        language: 'fr',
+        append_to_response: 'videos'
+      }
+    }
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map(response => new MovieModel(response))
+      );
+  }
+
+
+
 }

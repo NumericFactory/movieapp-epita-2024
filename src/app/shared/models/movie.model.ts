@@ -39,9 +39,9 @@ export class MovieModel {
         this.image_landscape = movie.backdrop_path;
         this.image_portrait = movie.poster_path;
         this.score = movie.vote_average;
-        this.genres = [];
+        this.genres = movie.genres ? movie.genres : [];
         this.date = movie.release_date;
         this.hasVideo = movie.video
-        this.video = movie.video ? '' : undefined;
+        this.video = movie.videos?.results.length > 0 ? movie.videos.results[0].key : undefined;
     }
 }

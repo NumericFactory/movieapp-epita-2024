@@ -54,6 +54,11 @@ nav.bg-navbar {
         transition-duration: .5s;
     }
 
+    li a.nav-link.active::before {
+        transform: scaleX(1);
+        opacity: 1 !important;
+    }
+
     li:hover {
         cursor: pointer;
 

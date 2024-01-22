@@ -11,6 +11,7 @@ import { SearchbarComponent } from './shared/components/searchbar/searchbar.comp
 import { CardComponent } from './shared/components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TvListViewComponent } from './views/tv-list-view/tv-list-view.component';
+import { HomeViewComponent } from './views/home-view/home-view.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TvListViewComponent } from './views/tv-list-view/tv-list-view.component
     ActionbarComponent,
     SearchbarComponent,
     CardComponent,
-    TvListViewComponent
+    TvListViewComponent,
+    HomeViewComponent
   ],
   imports: [
     BrowserModule,
