@@ -17,6 +17,13 @@ export class MovieListViewComponent {
 
   ngOnInit() {
 
+    /**
+     * getMoviesFromApi()
+     * retourne movieSvc.movies$$.asObservable()
+     * 
+     * donc je peux subscribe à cette source
+     *  this.movieSvc.movies$$.subscribe()
+     */
     this.movieSvc.getMoviesFromApi().subscribe(
       data => this.movies = data
     )

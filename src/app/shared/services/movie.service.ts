@@ -17,7 +17,7 @@ export class MovieService {
   private API_TOKEN: string = environment.TMDB_TOKEN;
 
   /* on crée un Behabior Subject qui sert de store pour nos MovieModel */
-  private movies$$ = new BehaviorSubject<MovieModel[]>([]);
+  movies$$ = new BehaviorSubject<MovieModel[]>([]);
   private tv$$ = new BehaviorSubject<TvShowModel[]>([]);
 
   constructor(private http: HttpClient) { }
@@ -41,6 +41,9 @@ export class MovieService {
    */
   getMoviesFromApi(): Observable<MovieModel[]> {
 
+    console.log('Subject movies$$', this.movies$$);
+    console.log('Subject movies$$ value', this.movies$$.getValue());
+
     if (this.movies$$.getValue().length > 0) {
       return this.movies$$.asObservable()
     }
@@ -62,7 +65,8 @@ export class MovieService {
             )
           )
         )
-        .subscribe((data: MovieModel[]) => this.movies$$.next(data))
+        //fairela request HTTP
+        .subscribe((response: MovieModel[]) => this.movies$$.next(response))
 
       return this.movies$$.asObservable()
     }
@@ -75,23 +79,29 @@ export class MovieService {
    * @returns @Observable<TvShowModel[]>
    */
   getTvShowFromApi(): Observable<TvShowModel[]> {
-
-    const ENDPOINT = `/discover/tv`;
-    let options = {
-      headers: {
-        Authorization: 'Bearer ' + this.API_TOKEN,
-        accept: 'application/json'
-      },
-      params: { language: 'fr' }
+    if (this.tv$$.getValue().length > 0) {
+      return this.tv$$.asObservable()
     }
-    return this.http.get(this.TMDB_URL + ENDPOINT, options)
-      .pipe(
-        map((response: any) =>
-          response.results.map(
-            (movieFromApi: any) => new TvShowModel(movieFromApi)
+    else {
+      const ENDPOINT = `/discover/tv`;
+      let options = {
+        headers: {
+          Authorization: 'Bearer ' + this.API_TOKEN,
+          accept: 'application/json'
+        },
+        params: { language: 'fr' }
+      }
+      this.http.get(this.TMDB_URL + ENDPOINT, options)
+        .pipe(
+          map((response: any) =>
+            response.results.map(
+              (movieFromApi: any) => new TvShowModel(movieFromApi)
+            )
           )
         )
-      );
+        .subscribe(response => this.tv$$.next(response))
+      return this.tv$$.asObservable()
+    }
   }
 
 
