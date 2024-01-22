@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MovieService } from '../../shared/services/movie.service';
 import { MovieModel } from '../../shared/models/movie.model';
-import { Observable, debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
+import { Observable, Subscription, debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'app-movie-list-view',
@@ -25,10 +25,11 @@ export class MovieListViewComponent {
      *  this.movieSvc.movies$$.subscribe()
      */
     this.movieSvc.getMoviesFromApi().subscribe(
-      data => this.movies = data
+      data => { this.movies = data }
     )
 
   }
+
 
 
 

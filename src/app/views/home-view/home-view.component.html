@@ -5,7 +5,7 @@
     <h3>Films</h3>
     @for (itemMovie of movies; track itemMovie.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeInUp">
-        <app-card [routerLink]="['/movies', itemMovie.id, itemMovie.titre]" [item]="itemMovie"></app-card>
+        <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
     </div>
     }
 

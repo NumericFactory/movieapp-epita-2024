@@ -1,8 +1,11 @@
-import { Component, OnInit, Sanitizer, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MovieModel } from '../../shared/models/movie.model';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Location } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-movie-detail-view',
@@ -14,6 +17,7 @@ export class MovieDetailViewComponent implements OnInit {
   movie!: MovieModel;
 
   constructor(
+    public location: Location,
     private route: ActivatedRoute, private movieSvc: MovieService, private sanitize: DomSanitizer) { }
 
 

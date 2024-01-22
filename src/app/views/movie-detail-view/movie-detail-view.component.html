@@ -3,7 +3,7 @@
 <div class="container-fluid p-5">
 
     <div class="d-flex align-items-center">
-        <button routerLink="/movies" class="btn btn-goback">
+        <button (click)="location.back()" class="btn btn-goback">
             <i class="bi bi-arrow-left"></i>
         </button>
         <h1>{{movie.titre}}</h1>
