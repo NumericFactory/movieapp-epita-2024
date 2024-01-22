@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
@@ -15,6 +15,10 @@ export class MovieService {
 
   private TMDB_URL: string = environment.TMDB_API_URL;
   private API_TOKEN: string = environment.TMDB_TOKEN;
+
+  /* on crée un Behabior Subject qui sert de store pour nos MovieModel */
+  private movies$$ = new BehaviorSubject<MovieModel[]>([]);
+  private tv$$ = new BehaviorSubject<TvShowModel[]>([]);
 
   constructor(private http: HttpClient) { }
   /*
@@ -36,23 +40,33 @@ export class MovieService {
    * @returns @Observable<MovieModel>
    */
   getMoviesFromApi(): Observable<MovieModel[]> {
-    const ENDPOINT = `/discover/movie`;
-    let options = {
-      headers: {
-        Authorization: 'Bearer ' + this.API_TOKEN,
-        accept: 'application/json'
-      },
-      params: { language: 'fr' }
-    }
 
-    return this.http.get(this.TMDB_URL + ENDPOINT, options)
-      .pipe(
-        map((response: any) =>
-          response.results.map(
-            (movieFromApi: any) => new MovieModel(movieFromApi)
+    if (this.movies$$.getValue().length > 0) {
+      return this.movies$$.asObservable()
+    }
+    else {
+      const ENDPOINT = `/discover/movie`;
+      let options = {
+        headers: {
+          Authorization: 'Bearer ' + this.API_TOKEN,
+          accept: 'application/json'
+        },
+        params: { language: 'fr' }
+      }
+
+      this.http.get(this.TMDB_URL + ENDPOINT, options)
+        .pipe(
+          map((response: any) =>
+            response.results.map(
+              (movieFromApi: any) => new MovieModel(movieFromApi)
+            )
           )
         )
-      )
+        .subscribe((data: MovieModel[]) => this.movies$$.next(data))
+
+      return this.movies$$.asObservable()
+    }
+
   }
 
   /**
@@ -61,6 +75,7 @@ export class MovieService {
    * @returns @Observable<TvShowModel[]>
    */
   getTvShowFromApi(): Observable<TvShowModel[]> {
+
     const ENDPOINT = `/discover/tv`;
     let options = {
       headers: {
