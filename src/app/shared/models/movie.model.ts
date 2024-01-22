@@ -29,7 +29,8 @@ export class MovieModel {
     genres: Genre[];
     date: Date;
     hasVideo: boolean;
-    video: undefined | string;
+    video: string | undefined;
+    //videos: any[];
 
     constructor(movie: any) {
         this.id = movie.id;
@@ -43,5 +44,6 @@ export class MovieModel {
         this.date = movie.release_date;
         this.hasVideo = movie.video
         this.video = movie.videos?.results.length > 0 ? movie.videos.results[0].key : undefined;
+        //this.videos = movie.videos?.results.length > 0 ? movie.videos.results : []
     }
 }

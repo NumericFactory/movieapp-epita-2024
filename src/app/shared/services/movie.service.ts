@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
+import { environment } from '../../../environments/environment.development';
+// importer l'environment
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +13,8 @@ import { TvShowModel } from '../models/tv-show.model';
 export class MovieService {
 
 
-  private TMDB_URL: string = 'https://api.themoviedb.org/3';
-  private API_TOKEN: string = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZmRlYjY2MWFhYTAwNmIxZTRmMzZmOTkwYTVmZDhmZCIsInN1YiI6IjU5ZDZiMDhiYzNhMzY4NTU3ZDAwMDQxMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.569-rPTcXUPOapO2e4uIsfSVs6KDPK0yFQ74mmsHSpo';
+  private TMDB_URL: string = environment.TMDB_API_URL;
+  private API_TOKEN: string = environment.TMDB_TOKEN;
 
   constructor(private http: HttpClient) { }
   /*
