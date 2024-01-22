@@ -1,1 +1,56 @@
-<p>movie-detail-view works!</p>
+@if(movie) {
+
+<div class="container-fluid p-5">
+
+    <div class="d-flex align-items-center">
+        <button routerLink="/movies" class="btn btn-goback">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <h1>{{movie.titre}}</h1>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-12 col-xl-6">
+
+            @if(movie.video) {
+            <!-- Integration iframe Ytube-->
+            <div class="video-container">
+                <iframe width="560" height="315" [src]="getFullVideoUrl(movie.video)" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+            }@else {
+
+            }
+
+        </div>
+
+        <div class="col-12 col-xl-6">
+            <!-- contenu details-->
+            <h2>Date de sortie</h2>
+            <p>{{movie.date}}</p>
+
+            <h2>Résumé</h2>
+            <p class="resume">{{movie.resume}}</p>
+
+            <h2>Genres</h2>
+            @for(genre of movie.genres; track genre.id ) {
+            <span class="badge rounded-pill text-bg-light">
+                {{genre.name}}
+            </span>
+            }
+
+            <h2>Durée</h2>
+            <p>{{movie.duration}}</p>
+
+            <hr>
+            <!-- AFFICHER LE FORMULAIRE DE COMMENTAIRE-->
+            <h2>Avis</h2>
+
+        </div>
+
+    </div>
+
+</div>
+}

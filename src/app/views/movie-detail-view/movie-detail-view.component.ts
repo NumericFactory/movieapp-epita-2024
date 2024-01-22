@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer, inject } from '@angular/core';
 import { MovieModel } from '../../shared/models/movie.model';
 import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../../shared/services/movie.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-detail-view',
@@ -10,14 +12,38 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailViewComponent implements OnInit {
 
   movie!: MovieModel;
-  constructor(private route: ActivatedRoute) {
 
-  }
+  constructor(
+    private route: ActivatedRoute, private movieSvc: MovieService, private sanitize: DomSanitizer) { }
 
-  // 1 récupere l'id dans l'URL
+
   ngOnInit() {
-    console.log(this.route.snapshot.params)
+    //1 On récupere l'id dans l'URL
+    console.log(this.route.snapshot.params);
+    const movieId: string = this.route.snapshot.params['id'];
+    //console.log(movieId);
+
+    //2 On demande au service de nous donner le film correspondant
+    this.movieSvc.getMovieFromApi(movieId)
+      .subscribe(data => this.movie = data)
+
   }
+
+  getFullVideoUrl(key: string): SafeResourceUrl {
+    return this.sanitize.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + key);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
   // 2 demander au service : faire une request TMDB_URL/movie/{id} 
   //movieService.getDetailMovie(id)
