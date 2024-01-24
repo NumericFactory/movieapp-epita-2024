@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SearchModel } from '../../shared/models/search.model';
+import { MovieModel } from '../../shared/models/movie.model';
 
 @Component({
   selector: 'app-search-view',
@@ -6,13 +8,17 @@ import { Component } from '@angular/core';
   styleUrl: './search-view.component.scss'
 })
 
+
 export class SearchViewComponent {
 
+  results!: SearchModel[];
+
   getSearchResults(results: any) {
-    console.log(results)
-    // [
-    //  { id:1, titre: 'Tom et jerry', image_landscape, media_type: 'tv'}, 
-    //  { id:2, titre: 'Tom et jerry', image_landscape, media_type: 'person'}
-    // ]
+    // console.log(results);
+    this.results = results
+  }
+
+  isSearchModelInstance(obj: any): boolean {
+    return obj instanceof MovieModel;
   }
 }

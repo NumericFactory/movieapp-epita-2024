@@ -2,4 +2,14 @@
 <app-searchbar (onResultsEvent)="getSearchResults($event)"></app-searchbar>
 
 <!-- Afficher les resultats -->
-<!-- <app-card [item]="result"></app-card> -->
+<div class="row mt-5">
+
+    @for(result of results; track result.id) {
+    <div class="col-12 col-md-4 col-xxl-2">
+
+        <app-card [item]="result"></app-card>
+
+    </div>
+    }
+
+</div>
