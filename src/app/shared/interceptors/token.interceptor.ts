@@ -17,6 +17,7 @@ export class TokenInterceptor {
     // let cloneRequest = req.clone()
 
     console.log('Avant : ', req);
+
     if (req.url.includes(this.TMDB_URL)) {
       cloneRequest = req.clone({
         headers: req.headers

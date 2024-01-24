@@ -7,14 +7,14 @@
 
     <h3>Films</h3>
     @for (itemMovie of movies; track itemMovie.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeInUp">
+    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
         <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
     </div>
     }
 
     <h3>Séries</h3>
     @for (itemTvSHow of tv; track itemTvSHow.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeInUp">
+    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
         <app-card [routerLink]="['/movies', itemTvSHow.id, itemTvSHow.titre]" [item]="itemTvSHow"></app-card>
     </div>
     }

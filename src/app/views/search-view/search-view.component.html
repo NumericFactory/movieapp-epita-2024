@@ -1,18 +1,21 @@
 <!-- searchbar -->
-<app-searchbar (onResultsEvent)="getSearchResults($event)"></app-searchbar>
+<app-searchbar (onResultsEvent)="getSearchResults($event)" class="animate__animated animate__fadeInUp"></app-searchbar>
 
 <!-- Afficher les resultats -->
 <div class="row mt-5">
 
     @for(result of results; track result.id) {
-    <div class="col-12 col-md-4 col-xxl-2">
+    <div class="col-12 col-md-4 col-xxl-2 animate__animated animate__fadeIn">
 
         <app-card [item]="result"></app-card>
 
     </div>
     <!-- Template d'affichage si pas de résultat -->
     } @empty() {
-    <p>Il n'y a pas de résultats</p>
+    <div class="d-flex justify-content-center">
+        <p>En attente de votre saisie...</p>
+
+    </div>
     }
 
 </div>

@@ -5,4 +5,5 @@ describe('PrintdurationPipe', () => {
     const pipe = new PrintdurationPipe();
     expect(pipe).toBeTruthy();
   });
+
 });
