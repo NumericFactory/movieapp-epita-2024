@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, ObservableLike, debounceTime, filter, switchMap, tap } from 'rxjs';
+import { Observable, ObservableLike, combineLatest, debounceTime, filter, fromEvent, switchMap, tap } from 'rxjs';
 import { MovieService } from '../../services/movie.service';
 import { MovieModel } from '../../models/movie.model';
 import { TvShowModel } from '../../models/tv-show.model';
@@ -20,11 +20,11 @@ export class SearchbarComponent {
   constructor(private movieSvc: MovieService) { }
 
   ngOnInit() {
+
     // 1 traiter la saisie du user
     let search$ = this.searchInput.valueChanges.pipe(
-      filter(val => val.length > 2),
-      debounceTime(500),
-      tap(val => console.log(val))
+      // filter(val => val.length > 2),
+      debounceTime(500)
     );
 
     // 2/ request

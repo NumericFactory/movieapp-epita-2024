@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TvShowModel } from '../../shared/models/tv-show.model';
-import { MovieService } from '../../shared/services/movie.service';
+import { TvShowModel } from '../../../shared/models/tv-show.model';
+import { MovieService } from '../../../shared/services/movie.service';
 
 @Component({
   selector: 'app-tv-list-view',

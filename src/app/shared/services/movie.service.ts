@@ -51,10 +51,6 @@ export class MovieService {
     else {
       const ENDPOINT = `/discover/movie`;
       let options = {
-        headers: {
-          Authorization: 'Bearer ' + this.API_TOKEN,
-          accept: 'application/json'
-        },
         params: { language: 'fr' }
       }
 
@@ -86,10 +82,6 @@ export class MovieService {
     else {
       const ENDPOINT = `/discover/tv`;
       let options = {
-        headers: {
-          Authorization: 'Bearer ' + this.API_TOKEN,
-          accept: 'application/json'
-        },
         params: { language: 'fr' }
       }
       this.http.get(this.TMDB_URL + ENDPOINT, options)
@@ -115,10 +107,6 @@ export class MovieService {
   getMovieFromApi(id: string): Observable<MovieModel> {
     const ENDPOINT = `/movie/${id}`;
     let options = {
-      headers: {
-        Authorization: 'Bearer ' + this.API_TOKEN,
-        accept: 'application/json'
-      },
       params: {
         language: 'fr',
         append_to_response: 'videos'
@@ -139,10 +127,6 @@ export class MovieService {
   search(userSearchText: string): Observable<any> {
     let ENDPOINT = '/search/multi';
     let options = {
-      headers: {
-        Authorization: 'Bearer ' + this.API_TOKEN,
-        accept: 'application/json'
-      },
       params: {
         language: 'fr',
         query: userSearchText

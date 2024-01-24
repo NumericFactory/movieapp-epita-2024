@@ -14,7 +14,7 @@ export class SearchViewComponent {
   results!: SearchModel[];
 
   getSearchResults(results: any) {
-    // console.log(results);
+    console.log(results);
     this.results = results
   }
 
