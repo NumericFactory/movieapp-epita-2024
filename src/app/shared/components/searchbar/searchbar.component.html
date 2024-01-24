@@ -1,1 +1,5 @@
-<p>searchbar works!</p>
+<input class="form-control" [formControl]="searchInput" placeholder="Rechercher des films, séries, ou personnes"
+    type="text">
+
+
+<pre>{{results | json}}</pre>

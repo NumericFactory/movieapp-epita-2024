@@ -12,6 +12,7 @@ import { CardComponent } from './shared/components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TvListViewComponent } from './views/tv-list-view/tv-list-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HomeViewComponent } from './views/home-view/home-view.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

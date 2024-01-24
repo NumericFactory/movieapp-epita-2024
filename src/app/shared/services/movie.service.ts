@@ -17,7 +17,7 @@ export class MovieService {
   private API_TOKEN: string = environment.TMDB_TOKEN;
 
   /* on crée un Behabior Subject qui sert de store pour nos MovieModel */
-  movies$$ = new BehaviorSubject<MovieModel[]>([]);
+  private movies$$ = new BehaviorSubject<MovieModel[]>([]);
   private tv$$ = new BehaviorSubject<TvShowModel[]>([]);
 
   constructor(private http: HttpClient) { }
@@ -127,6 +127,40 @@ export class MovieService {
       .pipe(
         map(response => new MovieModel(response))
       );
+  }
+
+  /**
+   * API TMDB
+   * endpoint /search/multi
+   * queryParams userSearchText : string
+   * @returns Observable<any> (movies, tvshows, or people)
+   */
+  search(userSearchText: string): Observable<any> {
+    let ENDPOINT = '/search/multi';
+    let options = {
+      headers: {
+        Authorization: 'Bearer ' + this.API_TOKEN,
+        accept: 'application/json'
+      },
+      params: {
+        language: 'fr',
+        query: userSearchText
+      }
+    }
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+    // .pipe(
+    //   map((response: any) => response.results.map((item: any) => {
+    //     switch (item.media_type) {
+    //       case 'movie': return new MovieModel(item)
+    //         break;
+    //       case 'tv': return new TvShowModel(item)
+    //         break;
+    //       case 'person': return item;
+    //         break;
+    //       default: return item
+    //     }
+    //   }))
+    // )
   }
 
 

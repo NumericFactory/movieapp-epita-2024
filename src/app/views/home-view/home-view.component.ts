@@ -30,6 +30,15 @@ export class HomeViewComponent {
     this.movieSvc.getTvShowFromApi().subscribe(
       data => this.tv = data.slice(0, 6)
     )
+
+
+    this.movieSvc.search('tom').subscribe(
+      data => console.log(data)
+    )
+  }
+
+  getSearchResults(results: any) {
+    console.log(results)
   }
 
   ngOnDestroy() {

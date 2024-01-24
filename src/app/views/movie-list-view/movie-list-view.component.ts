@@ -25,7 +25,7 @@ export class MovieListViewComponent {
      *  this.movieSvc.movies$$.subscribe()
      */
     this.movieSvc.getMoviesFromApi().subscribe(
-      data => { this.movies = data }
+      data => this.movies = data
     )
 
   }
