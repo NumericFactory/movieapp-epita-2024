@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
+import { SearchModel } from '../models/search.model';
 // importer l'environment
 
 
@@ -148,19 +149,12 @@ export class MovieService {
       }
     }
     return this.http.get(this.TMDB_URL + ENDPOINT, options)
-    // .pipe(
-    //   map((response: any) => response.results.map((item: any) => {
-    //     switch (item.media_type) {
-    //       case 'movie': return new MovieModel(item)
-    //         break;
-    //       case 'tv': return new TvShowModel(item)
-    //         break;
-    //       case 'person': return item;
-    //         break;
-    //       default: return item
-    //     }
-    //   }))
-    // )
+      .pipe(
+        map(
+          (response: any) => response.results.map((item: any) => new SearchModel(item))
+        )
+      )
+
   }
 
 
