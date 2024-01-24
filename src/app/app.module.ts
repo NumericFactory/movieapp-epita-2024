@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TvListViewComponent } from './views/tv-list-view/tv-list-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchViewComponent } from './views/search-view/search-view.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchbarComponent,
     CardComponent,
     TvListViewComponent,
-    HomeViewComponent
+    HomeViewComponent,
+    SearchViewComponent
   ],
   imports: [
     BrowserModule,
