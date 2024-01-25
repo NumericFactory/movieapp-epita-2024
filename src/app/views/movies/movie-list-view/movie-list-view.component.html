@@ -1,7 +1,7 @@
 <div class="row g-4 p-5">
     <h1>Films</h1>
     <!-- on itere une .col par movie-->
-    @for (itemMovie of movies; track itemMovie.id) {
+    @for (itemMovie of movies$ | async ; track itemMovie.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
         <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
     </div>

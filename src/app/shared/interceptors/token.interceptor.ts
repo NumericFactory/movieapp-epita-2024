@@ -11,7 +11,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     console.log(req);
     console.log(next);
-    let cloneRequest!: HttpRequest<any>;
+    let cloneRequest: HttpRequest<any> = req;
 
     // req.url => return l'url qui est appelée
     // let cloneRequest = req.clone()
@@ -25,9 +25,6 @@ export class TokenInterceptor implements HttpInterceptor {
           .append('accept', 'application/json'),
       })
     }
-
-    console.log('apres : ', cloneRequest);
-
 
     return next.handle(cloneRequest);
   }

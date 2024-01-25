@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SearchModel } from '../../shared/models/search.model';
-import { MovieModel } from '../../shared/models/movie.model';
 
 @Component({
   selector: 'app-search-view',
@@ -14,9 +13,7 @@ export class SearchViewComponent {
   results!: SearchModel[];
 
   getSearchResults(results: any) {
-    console.log(results);
     this.results = results
   }
-
 
 }

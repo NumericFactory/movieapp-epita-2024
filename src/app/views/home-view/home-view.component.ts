@@ -16,8 +16,6 @@ export class HomeViewComponent {
 
   constructor(private movieSvc: MovieService) { }
 
-
-
   ngOnInit() {
     // recuperer les 5 premiers movies
     this.movieSvc.getMoviesFromApi().subscribe(
@@ -31,10 +29,6 @@ export class HomeViewComponent {
       data => this.tv = data.slice(0, 6)
     )
 
-  }
-
-  getSearchResults(results: any) {
-    console.log(results)
   }
 
   ngOnDestroy() {

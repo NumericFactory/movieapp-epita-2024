@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../../shared/services/movie.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 
 
@@ -14,7 +15,8 @@ import { Location } from '@angular/common';
 })
 export class MovieDetailViewComponent implements OnInit {
 
-  movie!: MovieModel;
+  //movie!: MovieModel;
+  movie$!: Observable<MovieModel>
 
   constructor(
     public location: Location,
@@ -23,14 +25,14 @@ export class MovieDetailViewComponent implements OnInit {
 
   ngOnInit() {
     //1 On récupere l'id dans l'URL
-    console.log(this.route.snapshot.params);
     const movieId: string = this.route.snapshot.params['id'];
-    //console.log(movieId);
+    // 2 On demande au service de nous donner le film correspondant
+    //   this.movieSvc.getMovieFromApi(movieId)
+    //   .subscribe(data => this.movie = data)
 
-    //2 On demande au service de nous donner le film correspondant
-    this.movieSvc.getMovieFromApi(movieId)
-      .subscribe(data => this.movie = data)
-
+    // OU via le pipe async dans la view en remplacement du .subscribe précédent
+    this.movie$ = this.movieSvc.getMovieFromApi(movieId)
+    // on peut utiliser @if(movie$ | async; as movie)
   }
 
   getFullVideoUrl(key: string): SafeResourceUrl {
