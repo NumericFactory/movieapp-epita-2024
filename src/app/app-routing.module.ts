@@ -5,6 +5,8 @@ import { TvListViewComponent } from './views/tv/tv-list-view/tv-list-view.compon
 import { MovieDetailViewComponent } from './views/movies/movie-detail-view/movie-detail-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { SearchViewComponent } from './views/search-view/search-view.component';
+import { RegisterViewComponent } from './views/user/register-view/register-view.component';
+import { LoginViewComponent } from './views/user/login-view/login-view.component';
 
 const routes: Routes = [
   // ajouter mes routes
@@ -12,6 +14,9 @@ const routes: Routes = [
   { path: 'search', component: SearchViewComponent },
   { path: 'movies', component: MovieListViewComponent },
   { path: 'tv', component: TvListViewComponent },
+  { path: 'register', component: RegisterViewComponent },
+  { path: 'login', component: LoginViewComponent },
+
   { path: 'movies/:id', component: MovieDetailViewComponent }
 ];
 

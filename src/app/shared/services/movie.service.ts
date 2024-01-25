@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, mapTo, tap } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
@@ -13,13 +13,16 @@ import { SearchModel } from '../models/search.model';
 })
 export class MovieService {
 
-
   private TMDB_URL: string = environment.TMDB_API_URL;
-  private API_TOKEN: string = environment.TMDB_TOKEN;
 
   /* on crée un Behabior Subject qui sert de store pour nos MovieModel */
   private movies$$ = new BehaviorSubject<MovieModel[]>([]);
   private tv$$ = new BehaviorSubject<TvShowModel[]>([]);
+
+  private searchPageNumber = 1;
+  private searchResults$$ = new BehaviorSubject<SearchModel[]>([]);
+  public searchResults$ = this.searchResults$$.asObservable();
+
 
   constructor(private http: HttpClient) { }
   /*

@@ -1,9 +1,9 @@
-import { HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable()
-export class TokenInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
 
   TMDB_URL = environment.TMDB_API_URL;
   TMDB_TOKEN = environment.TMDB_TOKEN;

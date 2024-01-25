@@ -18,7 +18,5 @@ export class SearchViewComponent {
     this.results = results
   }
 
-  isSearchModelInstance(obj: any): boolean {
-    return obj instanceof MovieModel;
-  }
+
 }

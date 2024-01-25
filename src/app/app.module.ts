@@ -17,6 +17,8 @@ import { SearchViewComponent } from './views/search-view/search-view.component';
 import { MovieListViewComponent } from './views/movies/movie-list-view/movie-list-view.component';
 import { PrintdurationPipe } from './shared/pipes/printduration.pipe';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { RegisterViewComponent } from './views/user/register-view/register-view.component';
+import { LoginViewComponent } from './views/user/login-view/login-view.component';
 
 
 @NgModule({
@@ -31,7 +33,10 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
     TvListViewComponent,
     HomeViewComponent,
     SearchViewComponent,
-    PrintdurationPipe
+    PrintdurationPipe,
+    RegisterViewComponent,
+    LoginViewComponent,
+
   ],
   imports: [
     BrowserModule,
