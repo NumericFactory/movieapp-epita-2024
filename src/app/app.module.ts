@@ -20,6 +20,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { RegisterViewComponent } from './views/user/register-view/register-view.component';
 import { LoginViewComponent } from './views/user/login-view/login-view.component';
 import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.component';
+import { WatchlistComponent } from './views/user/watchlist/watchlist.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.
     RegisterViewComponent,
     LoginViewComponent,
     TvDetailViewComponent,
+    WatchlistComponent,
 
   ],
   imports: [
