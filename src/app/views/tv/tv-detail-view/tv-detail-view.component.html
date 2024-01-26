@@ -1,0 +1,85 @@
+@if(tvshow$ | async; as tvshow) {
+<div [style]="getBackdropImage(tvshow)" class="backdrop-img">
+    <div class="bkg-black"></div>
+    <div class="container-fluid p-5 backdrop-img">
+
+        <div class="d-flex align-items-center">
+            <button (click)="location.back()" class="btn btn-goback">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <h1>{{tvshow.titre}}</h1>
+        </div>
+
+        <div class="row g-4 animate__animated animate__fadeIn mb-5">
+
+            <div class="col-12 col-xl-6">
+
+                <!-- contenu details-->
+                <p>
+                    <span>{{tvshow.date | date:'yyyy'}}</span> • <span>{{tvshow.episode_runtime | printduration}}</span>
+                    •
+                    @for(genre of tvshow.genres; track genre.id ) {
+                    <span class="badge rounded-pill text-bg-light">
+                        {{genre.name}}
+                    </span>
+                    }
+                </p>
+
+                <div class="my-5">
+                    <button class="btn btn-light btn-watchlist">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            <span>Ajouter à la watchlist</span>
+                        </div>
+                    </button>
+                </div>
+
+                <h2>Résumé</h2>
+                <p class="resume">{{tvshow.resume}}</p>
+
+            </div>
+
+            <!-- <div class="col-12 col-xl-6">
+
+
+            </div> -->
+
+        </div>
+
+        <!-- TABS-->
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link active">Episode</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Suggestions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Avis</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4 col-xxl-2">
+                @if(tvshow.video) {
+
+                <div class="video-container">
+                    <iframe width="560" height="315" [src]="getFullVideoUrl(tvshow.video[0].key)" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                }@else {
+                <div class="d-flex align-items-center h-100 py-3">
+                    <h5>😒 Pas de vidéos disponible</h5>
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>
+}

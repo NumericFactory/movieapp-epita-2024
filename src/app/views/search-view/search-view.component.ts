@@ -6,8 +6,6 @@ import { SearchModel } from '../../shared/models/search.model';
   templateUrl: './search-view.component.html',
   styleUrl: './search-view.component.scss'
 })
-
-
 export class SearchViewComponent {
 
   results!: SearchModel[];

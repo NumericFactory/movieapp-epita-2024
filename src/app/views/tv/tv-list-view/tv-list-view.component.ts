@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TvShowModel } from '../../../shared/models/tv-show.model';
 import { MovieService } from '../../../shared/services/movie.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tv-list-view',
@@ -9,18 +10,9 @@ import { MovieService } from '../../../shared/services/movie.service';
 })
 export class TvListViewComponent {
 
-
   // variable d'affichage
-  tvShows: TvShowModel[] = [];
+  tvshows$: Observable<TvShowModel[]> = this.movieSvc.getTvShowFromApi();
 
   constructor(private movieSvc: MovieService) { }
-
-  ngOnInit() {
-    this.movieSvc.getTvShowFromApi()
-      .subscribe((data: TvShowModel[]) => {
-        console.log(data);
-        this.tvShows = data
-      });
-  }
 
 }

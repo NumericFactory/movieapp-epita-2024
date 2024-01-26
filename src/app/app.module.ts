@@ -19,6 +19,7 @@ import { PrintdurationPipe } from './shared/pipes/printduration.pipe';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { RegisterViewComponent } from './views/user/register-view/register-view.component';
 import { LoginViewComponent } from './views/user/login-view/login-view.component';
+import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { LoginViewComponent } from './views/user/login-view/login-view.component
     PrintdurationPipe,
     RegisterViewComponent,
     LoginViewComponent,
+    TvDetailViewComponent,
 
   ],
   imports: [

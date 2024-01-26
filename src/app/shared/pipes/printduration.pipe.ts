@@ -9,7 +9,7 @@ export class PrintdurationPipe implements PipeTransform {
     if (value) {
       let hour = Math.floor(value / 60);
       let min = value % 60;
-      return hour + 'h' + min + 'm';
+      return hour > 0 ? hour + 'h' + min + 'm' : min + 'mn';
     }
     else {
       return '';

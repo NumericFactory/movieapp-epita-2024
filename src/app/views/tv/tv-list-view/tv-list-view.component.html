@@ -1,9 +1,9 @@
 <div class="row g-4 p-5">
     <h1>Tv & séries</h1>
     <!-- on itere une .col par movie-->
-    @for (itemTvShow of tvShows; track itemTvShow.id) {
+    @for (itemTvShow of tvshows$ | async; track itemTvShow.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xl-3 animate__animated animate__fadeIn">
-        <app-card [item]="itemTvShow"></app-card>
+        <app-card [routerLink]="['/tv', itemTvShow.id]" [item]="itemTvShow"></app-card>
     </div>
     }
 </div>

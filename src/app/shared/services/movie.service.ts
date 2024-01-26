@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, mapTo, tap } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, mapTo, tap } from 'rxjs';
 import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
@@ -90,15 +90,38 @@ export class MovieService {
       this.http.get(this.TMDB_URL + ENDPOINT, options)
         .pipe(
           map((response: any) =>
-            response.results.map(
-              (movieFromApi: any) => new TvShowModel(movieFromApi)
-            )
+            response.results
+              .map(
+                (tvshowFromApi: any) => new TvShowModel(tvshowFromApi)
+              )
+              .filter((tvShow: TvShowModel) => tvShow.resume.length)
           )
         )
         .subscribe(response => this.tv$$.next(response))
       return this.tv$$.asObservable()
     }
   }
+
+  /**
+  * API TMDB
+  * endpoint: /tv/{id}
+  * queryParam: append_to_response=videos
+  * @returns @Observable<TvShowModel>
+  */
+  getOneTvShowFromApi(id: string): Observable<TvShowModel> {
+    const ENDPOINT = `/tv/${id}`;
+    let options = {
+      params: {
+        language: 'fr',
+        append_to_response: 'videos'
+      }
+    }
+    return this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map(response => new TvShowModel(response))
+      );
+  }
+
 
 
   /**

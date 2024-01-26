@@ -2,8 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, filter, switchMap } from 'rxjs';
 import { MovieService } from '../../services/movie.service';
-import { MovieModel } from '../../models/movie.model';
-import { TvShowModel } from '../../models/tv-show.model';
+import { SearchModel } from '../../models/search.model';
 
 @Component({
   selector: 'app-searchbar',
@@ -13,7 +12,7 @@ import { TvShowModel } from '../../models/tv-show.model';
 export class SearchbarComponent {
 
   searchInput = new FormControl();
-  results!: any;
+  results!: SearchModel[];
   @Output() onResultsEvent = new EventEmitter()
 
   constructor(private movieSvc: MovieService) { }
@@ -25,19 +24,17 @@ export class SearchbarComponent {
       debounceTime(500)
     );
 
-    // 2/ request
-    search$.pipe(
-      switchMap(data => this.movieSvc.search(data))
-    )
-      .subscribe((data: any) => {
+    // 2 request
+    search$
+      .pipe(
+        switchMap(data => this.movieSvc.search(data))
+      )
+      .subscribe((data: SearchModel[]) => {
         this.results = data;
         this.onResultsEvent.emit(data)
       })
 
   }
-
-
-
 
 
 

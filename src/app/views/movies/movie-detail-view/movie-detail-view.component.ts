@@ -22,7 +22,6 @@ export class MovieDetailViewComponent implements OnInit {
     public location: Location,
     private route: ActivatedRoute, private movieSvc: MovieService, private sanitize: DomSanitizer) { }
 
-
   ngOnInit() {
     //1 On récupere l'id dans l'URL
     const movieId: string = this.route.snapshot.params['id'];
@@ -30,9 +29,9 @@ export class MovieDetailViewComponent implements OnInit {
     //   this.movieSvc.getMovieFromApi(movieId)
     //   .subscribe(data => this.movie = data)
 
-    // OU via le pipe async dans la view en remplacement du .subscribe précédent
+    // OU via le pipe async dans la view (en remplacement du .subscribe précédent)
     this.movie$ = this.movieSvc.getMovieFromApi(movieId)
-    // on peut utiliser @if(movie$ | async; as movie)
+    // Pour afficher, on utilise @if(movie$ | async; as movie)
   }
 
   getFullVideoUrl(key: string): SafeResourceUrl {
