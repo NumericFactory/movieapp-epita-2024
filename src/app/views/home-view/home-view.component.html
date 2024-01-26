@@ -15,7 +15,7 @@
     <h3>Séries</h3>
     @for (itemTvSHow of tv; track itemTvSHow.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
-        <app-card [routerLink]="['/movies', itemTvSHow.id, itemTvSHow.titre]" [item]="itemTvSHow"></app-card>
+        <app-card [routerLink]="['/tv', itemTvSHow.id]" [item]="itemTvSHow"></app-card>
     </div>
     }
 </div>

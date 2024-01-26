@@ -7,7 +7,16 @@
     @for(result of results; track result.id) {
     <div class="col-12 col-md-4 col-xxl-2 animate__animated animate__fadeIn">
 
-        <app-card [item]="result"></app-card>
+        @switch (result.media_type) {
+        @case ('movie') {
+        <app-card [routerLink]="['/movies', result.id]" [item]="result"></app-card>
+        }
+        @case ('tv') {
+        <app-card [routerLink]="['/tv', result.id]" [item]="result"></app-card>
+        }
+
+        }
+
 
     </div>
     <!-- Template d'affichage si pas de résultat -->

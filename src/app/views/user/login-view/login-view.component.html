@@ -1,1 +1,28 @@
-<p>login-view works!</p>
+<div class="row justify-content-center p-5">
+
+    <div class="col-12 col-lg-6 col-xl-4">
+        <h1>Connectez-vous</h1>
+
+        <form (submit)="onSubmitUserRegisterForm($event)" [formGroup]="userForm">
+
+            <label class="form-label">Username</label>
+            <input class="form-control" formControlName="username" type="text">
+            <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
+            @if(userForm.controls['username'].errors && isSubmitted) {
+            <div class="form-text error">Le champ est requis - min 2 car. max 10 car.</div>
+            }
+            {{userForm.invalid}}
+
+
+            <label class="form-label">Mot de passe</label>
+            <input class="form-control" formControlName="password" type="password">
+            <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
+            @if(userForm.controls['password'].errors && isSubmitted) {
+            <div class="form-text error">Le champ est requis - min 2 car. max 5 car.</div>
+            }
+
+            <button class="btn btn-light mt-3">Créer</button>
+        </form>
+    </div>
+
+</div>
