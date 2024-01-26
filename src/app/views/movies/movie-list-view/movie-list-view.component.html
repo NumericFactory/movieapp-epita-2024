@@ -1,5 +1,8 @@
 <div class="row g-4 p-5">
-    <h1>Films</h1>
+    <div class="d-flex d-flex align-items-center">
+        <h1>Films</h1>
+        <app-select-genre contentType="movie"></app-select-genre>
+    </div>
     <!-- on itere une .col par movie-->
     @for (itemMovie of movies$ | async ; track itemMovie.id) {
     <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
