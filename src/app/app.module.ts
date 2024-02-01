@@ -23,6 +23,10 @@ import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.
 import { WatchlistComponent } from './views/user/watchlist/watchlist.component';
 import { ClickoutsideDirective } from './shared/directives/clickoutside.directive';
 import { DropdownComponent } from './shared/components/dropdown/dropdown.component';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -50,15 +54,26 @@ import { DropdownComponent } from './shared/components/dropdown/dropdown.compone
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
+
 
   ],
   providers: [
+    // interceptor pour ajouter un token à la request
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    // interceptor pour traiter les erreurs HTTP (401, 403, 404, 400, 500)
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    provideAnimationsAsync()
+
   ],
   bootstrap: [AppComponent]
 })

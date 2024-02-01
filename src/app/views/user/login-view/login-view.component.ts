@@ -43,7 +43,13 @@ export class LoginViewComponent {
     if (this.userLoginForm.valid) {
       // appeler la méthode loginUser() de UserService...
       this.userSvc.loginUser(this.userLoginForm.value)
-        .subscribe(response => this.userSvc.storeToken(response.token))
+        .subscribe({
+          next: response => this.userSvc.storeToken(response.token),
+          //error: err => alert('Mot de passe ou username erroné'),
+          // complete: () => console.log('Terminé')
+
+          // je traite les erreurs HTTP de façon centralisé : dans un interceptor
+        })
     }
   }
 
