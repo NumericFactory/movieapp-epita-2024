@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovieService } from '../../../shared/services/movie.service';
 import { MovieModel } from '../../../shared/models/movie.model';
 import { Observable } from 'rxjs';
+import { Genre, genresMovie } from '../../../shared/data/genres.data';
 
 @Component({
   selector: 'app-movie-list-view',
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs';
 export class MovieListViewComponent {
 
   movies$: Observable<MovieModel[]> = this.movieSvc.getMoviesFromApi();
+  genres: Genre[] = genresMovie;
 
   constructor(private movieSvc: MovieService) { }
   /**
@@ -24,4 +26,8 @@ export class MovieListViewComponent {
      * @for (itemMovie of movies$ | async ; track itemMovie.id)
      * 
      */
+
+  selectGenre(genre: Genre) {
+    console.log(genre)
+  }
 }

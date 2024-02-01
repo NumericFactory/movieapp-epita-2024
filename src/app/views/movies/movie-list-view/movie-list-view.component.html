@@ -1,7 +1,9 @@
 <div class="row g-4 p-5">
     <div class="d-flex d-flex align-items-center">
         <h1>Films</h1>
-        <app-select-genre contentType="movie"></app-select-genre>
+
+        <app-dropdown (OnSelectItemEvent)="selectGenre($event)" [items]="genres"></app-dropdown>
+
     </div>
     <!-- on itere une .col par movie-->
     @for (itemMovie of movies$ | async ; track itemMovie.id) {

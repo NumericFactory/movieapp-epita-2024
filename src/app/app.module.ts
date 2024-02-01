@@ -21,8 +21,8 @@ import { RegisterViewComponent } from './views/user/register-view/register-view.
 import { LoginViewComponent } from './views/user/login-view/login-view.component';
 import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.component';
 import { WatchlistComponent } from './views/user/watchlist/watchlist.component';
-import { SelectGenreComponent } from './shared/components/select-genre/select-genre.component';
 import { ClickoutsideDirective } from './shared/directives/clickoutside.directive';
+import { DropdownComponent } from './shared/components/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -42,8 +42,8 @@ import { ClickoutsideDirective } from './shared/directives/clickoutside.directiv
     LoginViewComponent,
     TvDetailViewComponent,
     WatchlistComponent,
-    SelectGenreComponent,
     ClickoutsideDirective,
+    DropdownComponent,
 
   ],
   imports: [

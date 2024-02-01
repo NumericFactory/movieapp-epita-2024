@@ -1,0 +1,16 @@
+<div class="dropdown">
+    <button (click)="openCloseMenu()">{{selectedGenre ? selectedGenre.name: 'Genres'}}<i
+            class="bi bi-chevron-down"></i></button>
+
+    @if(isMenuOpened) {
+    <ul>
+
+        @for(item of items; track item.id) {
+        <li (click)="selectItemAction(item)" [class.selected]="item.id===selectedGenre?.id" class="item">
+            {{item.name}}
+        </li>
+        }
+
+    </ul>
+    }
+</div>

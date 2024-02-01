@@ -44,7 +44,8 @@ ul li {
 
 }
 
-ul li:hover {
+ul li:hover,
+ul li.selected {
     background-color: rgb(71, 71, 71);
     cursor: pointer;
 }

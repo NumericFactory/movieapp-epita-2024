@@ -5,6 +5,7 @@ import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
 import { SearchModel } from '../models/search.model';
+import { Genre } from '../data/genres.data';
 // importer l'environment
 
 
@@ -44,10 +45,6 @@ export class MovieService {
    * @returns @Observable<MovieModel>
    */
   getMoviesFromApi(): Observable<MovieModel[]> {
-
-    console.log('Subject movies$$', this.movies$$);
-    console.log('Subject movies$$ value', this.movies$$.getValue());
-
     if (this.movies$$.getValue().length > 0) {
       return this.movies$$.asObservable()
     }

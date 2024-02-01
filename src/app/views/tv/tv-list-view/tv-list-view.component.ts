@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TvShowModel } from '../../../shared/models/tv-show.model';
 import { MovieService } from '../../../shared/services/movie.service';
 import { Observable } from 'rxjs';
+import { Genre, genresTv } from '../../../shared/data/genres.data';
 
 @Component({
   selector: 'app-tv-list-view',
@@ -10,9 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class TvListViewComponent {
 
-  // variable d'affichage
   tvshows$: Observable<TvShowModel[]> = this.movieSvc.getTvShowFromApi();
+  genres: Genre[] = genresTv;
 
   constructor(private movieSvc: MovieService) { }
+
+  selectGenre(genre: Genre) {
+    console.log(genre)
+  }
 
 }
