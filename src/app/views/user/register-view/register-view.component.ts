@@ -29,7 +29,7 @@ export class RegisterViewComponent {
       password: ['', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(5)
+        Validators.maxLength(5),
       ]
       ]
     })
@@ -40,19 +40,15 @@ export class RegisterViewComponent {
    * la méthode createUser du UserService
    */
   onSubmitUserRegisterForm(ev: Event): void {
-    ev.preventDefault()
-
+    ev.preventDefault(); // couper le comporement de la soumission du form;
     this.isSubmitted = true;
-    if (this.userForm.valid) {
-      this.isSubmitted = false
-      /* Remettre à zero form*/
-      // this.userForm.reset();
-      // createUser
-      console.log(this.userForm.value)
-      this.userSvc.createUser(this.userForm.value)
-        .subscribe(data => console.log(data))
+    console.log(this.userForm)
 
+    if (this.userForm.valid) {
+      this.userSvc.createUser(this.userForm.value)
+        .subscribe(response => console.log(response))
     }
+
   }
 
 }

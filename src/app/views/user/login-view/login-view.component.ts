@@ -8,7 +8,7 @@ import { UserService } from '../../../shared/services/user.service';
   styleUrl: './login-view.component.scss'
 })
 export class LoginViewComponent {
-  userForm!: FormGroup;
+  userLoginForm!: FormGroup;
   isSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder, private userSvc: UserService) { }
@@ -18,7 +18,7 @@ export class LoginViewComponent {
     /**
      * Créer une instance de FormGroup
      */
-    this.userForm = this.fb.group({
+    this.userLoginForm = this.fb.group({
       username: ['', [
         Validators.required,
         Validators.minLength(2),
@@ -38,19 +38,13 @@ export class LoginViewComponent {
    * Role verifier la validité et appeler 
    * la méthode createUser du UserService
    */
-  onSubmitUserRegisterForm(ev: Event): void {
-    ev.preventDefault()
+  onSubmitUserLoginForm(ev: Event): void {
+    ev.preventDefault();
+    if (this.userLoginForm.valid) {
 
-    this.isSubmitted = true;
-    if (this.userForm.valid) {
-      this.isSubmitted = false
-      /* Remettre à zero form*/
-      // this.userForm.reset();
-      // createUser
-      console.log(this.userForm.value)
-      this.userSvc.createUser(this.userForm.value)
-        .subscribe(data => console.log(data))
 
     }
   }
+
+
 }
