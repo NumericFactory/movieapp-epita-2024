@@ -1,3 +1,5 @@
+import { Review } from "./review.model";
+
 interface Genre {
     id: number,
     name: string
@@ -14,6 +16,7 @@ export class TvShowModel {
     genres: Genre[];
     date: Date;
     video: any[];
+    reviews: Review[];
     constructor(tv: any) {
         this.id = tv.id;
         this.titre = tv.name;
@@ -25,5 +28,6 @@ export class TvShowModel {
         this.genres = tv.genres ? tv.genres : [];
         this.date = tv.first_air_date;
         this.video = tv.videos?.results.length > 0 ? tv.videos.results : undefined;
+        this.reviews = []
     }
 }

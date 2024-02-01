@@ -1,16 +1,4 @@
-// export type MovieModel = {
-//     title: string,
-//     resume: string,
-//     image_portrait: string,
-//     image_paysage: string
-// }
-
-// export interface MovieModel {
-//     title: string,
-//     resume: string,
-//     image_portrait: string,
-//     image_paysage: string
-// }
+import { Review } from "./review.model";
 
 
 interface Genre {
@@ -31,6 +19,7 @@ export class MovieModel {
     hasVideo: boolean;
     video: string | undefined;
     //videos: any[];
+    reviews: Review[];
 
     constructor(movie: any) {
         this.id = movie.id;
@@ -45,5 +34,6 @@ export class MovieModel {
         this.hasVideo = movie.video
         this.video = movie.videos?.results.length > 0 ? movie.videos.results[0].key : undefined;
         //this.videos = movie.videos?.results.length > 0 ? movie.videos.results : []
+        this.reviews = []
     }
 }
