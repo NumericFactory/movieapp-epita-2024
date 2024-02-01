@@ -41,8 +41,9 @@ export class LoginViewComponent {
   onSubmitUserLoginForm(ev: Event): void {
     ev.preventDefault();
     if (this.userLoginForm.valid) {
-
-
+      // appeler la méthode loginUser() de UserService...
+      this.userSvc.loginUser(this.userLoginForm.value)
+        .subscribe(response => console.log(response))
     }
   }
 

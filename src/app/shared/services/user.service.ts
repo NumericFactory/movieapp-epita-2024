@@ -11,6 +11,7 @@ export class UserService {
 
   MYAPI_URL = environment.API_BASE_URL;
 
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -32,6 +33,7 @@ export class UserService {
   */
   loginUser(user: UserModel): Observable<any> {
     let endpoint = '/auth/login';
+    return this.http.post(this.MYAPI_URL + endpoint, user)
 
   }
 
