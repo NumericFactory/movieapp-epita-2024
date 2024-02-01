@@ -25,7 +25,6 @@ export class UserService {
     return this.http.post(this.MYAPI_URL + endpoint, user)
   }
 
-
   /** loginUser 
    *  endpoint /auth/login
    *  @param UserModel
@@ -34,9 +33,22 @@ export class UserService {
   loginUser(user: UserModel): Observable<any> {
     let endpoint = '/auth/login';
     return this.http.post(this.MYAPI_URL + endpoint, user)
-
   }
 
+
+  storeToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  isUserAuthenticated() {
+    // côté front, ça signifie récupérer le payload du token (la date de validité)
+    // côté backend => POST token
+  }
 
 
 }

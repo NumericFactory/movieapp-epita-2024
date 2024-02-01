@@ -43,7 +43,7 @@ export class LoginViewComponent {
     if (this.userLoginForm.valid) {
       // appeler la méthode loginUser() de UserService...
       this.userSvc.loginUser(this.userLoginForm.value)
-        .subscribe(response => console.log(response))
+        .subscribe(response => this.userSvc.storeToken(response.token))
     }
   }
 
