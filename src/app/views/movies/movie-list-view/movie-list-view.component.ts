@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieService } from '../../../shared/services/movie.service';
+import { TmdbService } from '../../../shared/services/tmdb.service';
 import { MovieModel } from '../../../shared/models/movie.model';
 import { Observable, Subscription } from 'rxjs';
 import { Genre, genresMovie } from '../../../shared/data/genres.data';
@@ -11,17 +11,17 @@ import { Genre, genresMovie } from '../../../shared/data/genres.data';
 })
 export class MovieListViewComponent {
 
-  movies$: Observable<MovieModel[]> = this.movieSvc.getMoviesFromApi();
+  movies$: Observable<MovieModel[]> = this.tmdbSvc.getMoviesFromApi();
   genres: Genre[] = genresMovie;
   subscription!: Subscription;
 
-  constructor(private movieSvc: MovieService) { }
+  constructor(private tmdbSvc: TmdbService) { }
   /**
      * getMoviesFromApi()
-     * retourne movieSvc.movies$$.asObservable()
+     * retourne tmdbSvc.movies$$.asObservable()
      * 
      * donc je peux subscribe à cette source
-     * this.subscription = this.movieSvc.getMoviesFromApi().subscribe(data => this.movies = data) 
+     * this.subscription = this.tmdbSvc.getMoviesFromApi().subscribe(data => this.movies = data) 
      * 
      * ou directement avec le pipe async dans la view...
      * @for (itemMovie of movies$ | async ; track itemMovie.id)

@@ -12,10 +12,10 @@ interface Endpoint {
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  // list of endpoints needs a user token
+  // list of endpoints need a user token
   private apiAuthEndpoints: Endpoint[] = [
     { endpoint: '/watchlist', method: 'ALL' },
-    { endpoint: 'reviews', method: 'POST' },
+    { endpoint: '/reviews', method: 'POST' },
     // add other...
   ];
   TMDB_URL = environment.TMDB_API_URL;
@@ -61,13 +61,13 @@ export class TokenInterceptor implements HttpInterceptor {
   private isUrlNeedsUserToken(request: HttpRequest<any>): boolean {
     if (request.url.includes(this.MYAPI_URL)) {
       let endpoint = Utils.getUrlEndpoint(this.MYAPI_URL, request.url);
-      // verify if the request is in apiAuthEndpoints Array we defined
+      // verify if the request exists in endPoint[] we defined
       let requestIsAnAuthEnpoint = this.apiAuthEndpoints.find(item =>
         item.endpoint === endpoint &&
         item.method === request.method || item.method === 'ALL'
       );
       if (requestIsAnAuthEnpoint) {
-        return true
+        return true;
       }
     }
     return false;

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../../shared/services/movie.service';
+import { TmdbService } from '../../../shared/services/tmdb.service';
 import { TvShowModel } from '../../../shared/models/tv-show.model';
 import { Location } from '@angular/common';
 
@@ -15,14 +15,14 @@ export class TvDetailViewComponent {
   tvshow$!: Observable<TvShowModel>
   constructor(
     private route: ActivatedRoute,
-    private movieSvc: MovieService,
+    private tmdbSvc: TmdbService,
     private sanitize: DomSanitizer,
     public location: Location) { }
 
   ngOnInit() {
     // 1 On récupere l'id dans l'URL
     const tvShowId: string = this.route.snapshot.params['id'];
-    this.tvshow$ = this.movieSvc.getOneTvShowFromApi(tvShowId).pipe(
+    this.tvshow$ = this.tmdbSvc.getOneTvShowFromApi(tvShowId).pipe(
       tap(console.log)
     )
     // 2 dans la view (tvshow$ | async; as tvshow)

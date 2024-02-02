@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TvShowModel } from '../../../shared/models/tv-show.model';
-import { MovieService } from '../../../shared/services/movie.service';
+import { TmdbService } from '../../../shared/services/tmdb.service';
 import { Observable } from 'rxjs';
 import { Genre, genresTv } from '../../../shared/data/genres.data';
 
@@ -11,10 +11,10 @@ import { Genre, genresTv } from '../../../shared/data/genres.data';
 })
 export class TvListViewComponent {
 
-  tvshows$: Observable<TvShowModel[]> = this.movieSvc.getTvShowFromApi();
+  tvshows$: Observable<TvShowModel[]> = this.tmdbSvc.getTvShowFromApi();
   genres: Genre[] = genresTv;
 
-  constructor(private movieSvc: MovieService) { }
+  constructor(private tmdbSvc: TmdbService) { }
 
   selectGenre(genre: Genre) {
     console.log(genre)

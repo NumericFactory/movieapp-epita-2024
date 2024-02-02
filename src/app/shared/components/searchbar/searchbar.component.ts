@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, filter, switchMap } from 'rxjs';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/tmdb.service';
 import { SearchModel } from '../../models/search.model';
 
 @Component({
