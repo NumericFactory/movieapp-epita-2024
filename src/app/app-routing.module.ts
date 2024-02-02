@@ -9,6 +9,7 @@ import { RegisterViewComponent } from './views/user/register-view/register-view.
 import { LoginViewComponent } from './views/user/login-view/login-view.component';
 import { TvDetailViewComponent } from './views/tv/tv-detail-view/tv-detail-view.component';
 import { WatchlistComponent } from './views/user/watchlist/watchlist.component';
+import { PersonDetailViewComponent } from './views/person/person-detail-view/person-detail-view.component';
 
 // ajouter les routes
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
   // tv views
   { path: 'tv', component: TvListViewComponent },
   { path: 'tv/:id', component: TvDetailViewComponent },
+  // person view
+  { path: 'person/:id', component: PersonDetailViewComponent },
   // user views
   { path: 'register', component: RegisterViewComponent },
   { path: 'login', component: LoginViewComponent },

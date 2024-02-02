@@ -27,6 +27,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PersonDetailViewComponent } from './views/person/person-detail-view/person-detail-view.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     WatchlistComponent,
     ClickoutsideDirective,
     DropdownComponent,
+    PersonDetailViewComponent,
 
   ],
   imports: [
