@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ];
   TMDB_URL = environment.TMDB_API_URL;
   TMDB_TOKEN = environment.TMDB_TOKEN;
-  MYAPI = environment.API_BASE_URL;
+  MYAPI_URL = environment.API_BASE_URL;
   USER_TOKEN = this.userSvc.getToken();
 
   constructor(private userSvc: UserService) { }
@@ -59,8 +59,8 @@ export class TokenInterceptor implements HttpInterceptor {
     * @returns boolean
   */
   private isUrlNeedsUserToken(request: HttpRequest<any>): boolean {
-    if (request.url.includes(this.MYAPI)) {
-      let endpoint = Utils.getUrlEndpoint(request.url, this.MYAPI);
+    if (request.url.includes(this.MYAPI_URL)) {
+      let endpoint = Utils.getUrlEndpoint(this.MYAPI_URL, request.url);
       // verify if the request is in apiAuthEndpoints Array we defined
       let requestIsAnAuthEnpoint = this.apiAuthEndpoints.find(item =>
         item.endpoint === endpoint &&
