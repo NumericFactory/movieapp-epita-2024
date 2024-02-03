@@ -10,7 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   MY_API = environment.API_BASE_URL
 
-  constructor(private route: Router, private alert: AlertService) { }
+  constructor(private _route: Router, private _alert: AlertService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -24,27 +24,27 @@ export class ErrorInterceptor implements HttpInterceptor {
             switch (err.status) {
               case 400:
                 // if (req.url.includes(this.MY_API+'/users') && req.method=='POST') 
-                this.alert.show(err.error.message);
+                this._alert.show(err.error.message);
                 break;
               case 401:
-                this.alert.show(err.error.message);
-                this.route.navigate(['/login']);
+                this._alert.show(err.error.message);
+                this._route.navigate(['/login']);
                 break;
               case 403:
-                this.alert.show(err.error.message)
+                this._alert.show(err.error.message)
                 break;
               case 404:
-                this.alert.show(err.error.message)
+                this._alert.show(err.error.message)
                 break;
               case 419:
-                this.alert.show(err.error.message)
+                this._alert.show(err.error.message)
                 break;
               case 409:
-                this.alert.show(err.error.message)
+                this._alert.show(err.error.message)
                 break;
 
               default:
-                this.alert.show("Erreur serveur")
+                this._alert.show("Erreur serveur")
             }
           }
 

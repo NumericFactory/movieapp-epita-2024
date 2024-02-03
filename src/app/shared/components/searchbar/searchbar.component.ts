@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, filter, switchMap } from 'rxjs';
-import { TmdbService } from '../../services/tmdb.service';
+import { TMDBService } from '../../services/tmdb.service';
 import { SearchModel } from '../../models/search.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class SearchbarComponent {
   results!: SearchModel[];
   @Output() onResultsEvent = new EventEmitter()
 
-  constructor(private tmdbSvc: TmdbService) { }
+  constructor(private _TMDBSvc: TMDBService) { }
 
   ngOnInit() {
     // 1 traiter la saisie du user
@@ -27,7 +27,7 @@ export class SearchbarComponent {
     // 2 request
     search$
       .pipe(
-        switchMap(data => this.tmdbSvc.search(data))
+        switchMap(data => this._TMDBSvc.search(data))
       )
       .subscribe((data: SearchModel[]) => {
         console.log(data)

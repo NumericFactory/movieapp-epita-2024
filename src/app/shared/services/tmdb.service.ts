@@ -9,7 +9,7 @@ import { SearchModel } from '../models/search.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TmdbService {
+export class TMDBService {
 
   private TMDB_URL: string = environment.TMDB_API_URL;
 

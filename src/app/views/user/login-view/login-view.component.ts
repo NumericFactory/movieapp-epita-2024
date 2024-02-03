@@ -11,14 +11,13 @@ export class LoginViewComponent {
   userLoginForm!: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userSvc: UserService) { }
-
+  constructor(private _fb: FormBuilder, private _userSvc: UserService) { }
 
   ngOnInit() {
     /**
      * Créer une instance de FormGroup
      */
-    this.userLoginForm = this.fb.group({
+    this.userLoginForm = this._fb.group({
       username: ['', [
         Validators.required,
         Validators.minLength(2),
@@ -42,9 +41,9 @@ export class LoginViewComponent {
     ev.preventDefault();
     if (this.userLoginForm.valid) {
       // appeler la méthode loginUser() de UserService...
-      this.userSvc.loginUser(this.userLoginForm.value)
+      this._userSvc.loginUser(this.userLoginForm.value)
         .subscribe({
-          next: response => this.userSvc.storeToken(response.token),
+          next: response => this._userSvc.storeToken(response.token),
           //error: err => alert('Mot de passe ou username erroné'),
           // complete: () => console.log('Terminé')
 

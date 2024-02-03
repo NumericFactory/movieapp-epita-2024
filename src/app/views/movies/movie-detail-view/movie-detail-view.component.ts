@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieModel } from '../../../shared/models/movie.model';
 import { ActivatedRoute } from '@angular/router';
-import { TmdbService } from '../../../shared/services/tmdb.service';
+import { TMDBService } from '../../../shared/services/tmdb.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -20,22 +20,24 @@ export class MovieDetailViewComponent implements OnInit {
 
   constructor(
     public location: Location,
-    private route: ActivatedRoute, private tmdbSvc: TmdbService, private sanitize: DomSanitizer) { }
+    private _route: ActivatedRoute,
+    private _TMDBSvc: TMDBService,
+    private _sanitize: DomSanitizer) { }
 
   ngOnInit() {
     //1 On récupere l'id dans l'URL
-    const movieId: string = this.route.snapshot.params['id'];
+    const movieId: string = this._route.snapshot.params['id'];
     // 2 On demande au service de nous donner le film correspondant
-    //   this.tmdbSvc.getMovieFromApi(movieId)
+    //   this._TMDBSvc.getMovieFromApi(movieId)
     //   .subscribe(data => this.movie = data)
 
     // OU via le pipe async dans la view (en remplacement du .subscribe précédent)
-    this.movie$ = this.tmdbSvc.getMovieFromApi(movieId)
+    this.movie$ = this._TMDBSvc.getMovieFromApi(movieId)
     // Pour afficher, on utilise @if(movie$ | async; as movie)
   }
 
   getFullVideoUrl(key: string): SafeResourceUrl {
-    return this.sanitize.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + key);
+    return this._sanitize.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + key);
   }
 
 
@@ -51,7 +53,7 @@ export class MovieDetailViewComponent implements OnInit {
 
 
   // 2 demander au service : faire une request TMDB_URL/movie/{id} 
-  //TmdbService.getDetailMovie(id)
+  //TMDBService.getDetailMovie(id)
   // Je recupere un objet MovieModel
 
   // 3 dans le template movie-detail-.html

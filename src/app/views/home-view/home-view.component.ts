@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MovieModel } from '../../shared/models/movie.model';
 import { TvShowModel } from '../../shared/models/tv-show.model';
-import { TmdbService } from '../../shared/services/tmdb.service';
+import { TMDBService } from '../../shared/services/tmdb.service';
 
 @Component({
   selector: 'app-home-view',
@@ -13,18 +13,18 @@ export class HomeViewComponent {
   movies!: MovieModel[];
   tv!: TvShowModel[];
 
-  constructor(private tmdbSvc: TmdbService) { }
+  constructor(private _TMDBSvc: TMDBService) { }
 
   ngOnInit() {
     // recuperer les 5 premiers movies
-    this.tmdbSvc.getMoviesFromApi().subscribe(
+    this._TMDBSvc.getMoviesFromApi().subscribe(
       data => {
         console.log(data)
         this.movies = data.slice(0, 6)
       }
     )
     // recuperer les 5 premieres series
-    this.tmdbSvc.getTvShowFromApi().subscribe(
+    this._TMDBSvc.getTvShowFromApi().subscribe(
       data => this.tv = data.slice(0, 6)
     )
 

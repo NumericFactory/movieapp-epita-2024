@@ -12,14 +12,14 @@ export class RegisterViewComponent {
   userForm!: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userSvc: UserService) { }
+  constructor(private _fb: FormBuilder, private _userSvc: UserService) { }
 
 
   ngOnInit() {
     /**
      * Créer une instance de FormGroup
      */
-    this.userForm = this.fb.group({
+    this.userForm = this._fb.group({
       username: ['', [
         Validators.required,
         Validators.minLength(2),
@@ -45,7 +45,7 @@ export class RegisterViewComponent {
     console.log(this.userForm)
 
     if (this.userForm.valid) {
-      this.userSvc.createUser(this.userForm.value)
+      this._userSvc.createUser(this.userForm.value)
         .subscribe(response => console.log(response))
     }
 
