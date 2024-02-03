@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+interface ResponseWithToken {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,6 @@ import { environment } from '../../../environments/environment.development';
 export class UserService {
 
   MYAPI_URL = environment.API_BASE_URL;
-
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +27,7 @@ export class UserService {
     return this.http.post(this.MYAPI_URL + endpoint, user)
   }
 
+
   /** loginUser 
    *  endpoint /auth/login
    *  @param UserModel
@@ -32,7 +35,14 @@ export class UserService {
   */
   loginUser(user: UserModel): Observable<any> {
     let endpoint = '/auth/login';
-    return this.http.post(this.MYAPI_URL + endpoint, user)
+    return this.http.post<ResponseWithToken>(this.MYAPI_URL + endpoint, user)
+      // store token in localStorage
+      .pipe(
+        tap((response: ResponseWithToken) => {
+          if (response.token && response.token.length)
+            this.storeToken(response.token);
+        })
+      )
   }
 
 
