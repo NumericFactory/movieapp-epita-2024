@@ -1,0 +1,24 @@
+.action-bar {
+    background: rgba(41, 45, 61, 0.95);
+    padding: 1rem calc(3rem + 12px);
+    position: fixed;
+    width: calc(100%);
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    transform: translate(-60px, 0px);
+    z-index: 999;
+}
+
+.action-bar button {
+    background: rgb(115 57 194);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition-duration: .3s;
+}
+
+.action-bar button:hover {
+    background: rgb(58, 55, 67);
+}
