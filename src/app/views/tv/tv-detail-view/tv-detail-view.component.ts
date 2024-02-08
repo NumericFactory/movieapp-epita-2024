@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TMDBService } from '../../../shared/services/tmdb.service';
-import { TvShowModel } from '../../../shared/models/tv-show.model';
+import { TMDBService } from '../../../core/adapters/tmdb.service';
+import { TvShowModel } from '../../../core/models/tv-show.model';
 import { Location } from '@angular/common';
+import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
 
 @Component({
   selector: 'app-tv-detail-view',
@@ -15,7 +16,8 @@ export class TvDetailViewComponent {
   tvshow$!: Observable<TvShowModel>
   constructor(
     private _route: ActivatedRoute,
-    private _TMDBSvc: TMDBService,
+    //private _TMDBSvc: TMDBService,
+    private _TMDBSvc: APIExternalMoviesGateway,
     private _sanitize: DomSanitizer,
     public location: Location) { }
 

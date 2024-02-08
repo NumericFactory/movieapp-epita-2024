@@ -9,7 +9,7 @@ interface Genre {
 export class MovieModel {
     id: number;
     titre: string;
-    duration: undefined | number;
+    duration?: undefined | number;
     resume: string;
     image_landscape: string;
     image_portrait: string;
@@ -17,7 +17,7 @@ export class MovieModel {
     genres: Genre[];
     date: Date;
     hasVideo: boolean;
-    video: string | undefined;
+    video?: string | undefined;
     //videos: any[];
     reviews: Review[];
 

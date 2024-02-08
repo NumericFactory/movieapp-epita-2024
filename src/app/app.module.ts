@@ -30,7 +30,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
-
+import { APIExternalMoviesGateway as APIExternalMoviesGateway } from './core/ports/api-external-movies.gateway';
+import { TMDBService } from './core/adapters/tmdb.service';
+import { APIInMemoryService } from './core/adapters/apiin-memory.service';
 
 
 @NgModule({
@@ -66,6 +68,11 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
   ],
 
   providers: [
+    // Ici on indique à angular  APIAPIExternalMoviesGateway va instancier TMDBService
+    // { provide: APIExternalMoviesGateway, useClass: TMDBService },
+    { provide: APIExternalMoviesGateway, useClass: APIInMemoryService },
+
+
     // interceptor pour ajouter un token à la request
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TvShowModel } from '../../../shared/models/tv-show.model';
-import { TMDBService } from '../../../shared/services/tmdb.service';
+import { TvShowModel } from '../../../core/models/tv-show.model';
 import { Observable } from 'rxjs';
 import { Genre, genresTv } from '../../../shared/data/genres.data';
+import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
 
 @Component({
   selector: 'app-tv-list-view',
@@ -14,7 +14,10 @@ export class TvListViewComponent {
   tvshows$: Observable<TvShowModel[]> = this._TMDBSvc.getTvShowFromApi();
   genres: Genre[] = genresTv;
 
-  constructor(private _TMDBSvc: TMDBService) { }
+  constructor(
+    // private _TMDBSvc: TMDBService,
+    private _TMDBSvc: APIExternalMoviesGateway
+  ) { }
 
   selectGenre(genre: Genre) {
     console.log(genre)

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieModel } from '../../../shared/models/movie.model';
+import { MovieModel } from '../../../core/models/movie.model';
 import { ActivatedRoute } from '@angular/router';
-import { TMDBService } from '../../../shared/services/tmdb.service';
+import { TMDBService } from '../../../core/adapters/tmdb.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
+import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
 
 
 
@@ -21,7 +22,8 @@ export class MovieDetailViewComponent implements OnInit {
   constructor(
     public location: Location,
     private _route: ActivatedRoute,
-    private _TMDBSvc: TMDBService,
+    // private _TMDBSvc: TMDBService,
+    private _TMDBSvc: APIExternalMoviesGateway,
     private _sanitize: DomSanitizer) { }
 
   ngOnInit() {

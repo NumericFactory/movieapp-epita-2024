@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { MovieModel } from '../../shared/models/movie.model';
-import { TvShowModel } from '../../shared/models/tv-show.model';
-import { TMDBService } from '../../shared/services/tmdb.service';
+import { MovieModel } from '../../core/models/movie.model';
+import { TvShowModel } from '../../core/models/tv-show.model';
+import { TMDBService } from '../../core/adapters/tmdb.service';
+import { APIExternalMoviesGateway } from '../../core/ports/api-external-movies.gateway';
 
 @Component({
   selector: 'app-home-view',
@@ -13,7 +14,10 @@ export class HomeViewComponent {
   movies!: MovieModel[];
   tv!: TvShowModel[];
 
-  constructor(private _TMDBSvc: TMDBService) { }
+  constructor(
+    //private _TMDBSvc: TMDBService
+    private _TMDBSvc: APIExternalMoviesGateway
+  ) { }
 
   ngOnInit() {
     // recuperer les 5 premiers movies

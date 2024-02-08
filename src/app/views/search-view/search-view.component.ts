@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchModel } from '../../shared/models/search.model';
+import { SearchModel } from '../../core/models/search.model';
 
 @Component({
   selector: 'app-search-view',

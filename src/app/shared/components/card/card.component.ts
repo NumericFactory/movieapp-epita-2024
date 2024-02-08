@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MovieModel } from '../../models/movie.model';
-import { TvShowModel } from '../../models/tv-show.model';
-import { SearchModel } from '../../models/search.model';
+import { MovieModel } from '../../../core/models/movie.model';
+import { TvShowModel } from '../../../core/models/tv-show.model';
+import { SearchModel } from '../../../core/models/search.model';
 
 
 @Component({

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { TMDBService } from '../../../shared/services/tmdb.service';
-import { MovieModel } from '../../../shared/models/movie.model';
+import { TMDBService } from '../../../core/adapters/tmdb.service';
+import { MovieModel } from '../../../core/models/movie.model';
 import { Observable, Subscription } from 'rxjs';
 import { Genre, genresMovie } from '../../../shared/data/genres.data';
+import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
 
 @Component({
   selector: 'app-movie-list-view',
@@ -15,7 +16,10 @@ export class MovieListViewComponent {
   genres: Genre[] = genresMovie;
   subscription!: Subscription;
 
-  constructor(private _TMDBSvc: TMDBService) { }
+  constructor(
+    // private _TMDBSvc: TMDBService
+    private _TMDBSvc: APIExternalMoviesGateway
+  ) { }
   /**
      * getMoviesFromApi()
      * retourne _TMDBSvc.movies$$.asObservable()
