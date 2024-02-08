@@ -33,6 +33,10 @@ export class MovieListViewComponent {
      * 
      */
 
+  ngOnInit() {
+    this._TMDBSvc.getMoviesFromApi()
+  }
+
   selectGenre(genre: Genre) {
     console.log(genre)
     // Request TMDV /movie/

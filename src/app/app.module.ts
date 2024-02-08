@@ -69,8 +69,8 @@ import { APIInMemoryService } from './core/adapters/apiin-memory.service';
 
   providers: [
     // Ici on indique à angular  APIAPIExternalMoviesGateway va instancier TMDBService
-    // { provide: APIExternalMoviesGateway, useClass: TMDBService },
-    { provide: APIExternalMoviesGateway, useClass: APIInMemoryService },
+    { provide: APIExternalMoviesGateway, useClass: TMDBService },
+    //{ provide: APIExternalMoviesGateway, useClass: APIInMemoryService },
 
 
     // interceptor pour ajouter un token à la request

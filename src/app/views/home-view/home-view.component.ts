@@ -25,12 +25,10 @@ export class HomeViewComponent {
       data => {
         console.log(data)
         this.movies = data.slice(0, 6)
+
       }
     )
-    // recuperer les 5 premieres series
-    this._TMDBSvc.getTvShowFromApi().subscribe(
-      data => this.tv = data.slice(0, 6)
-    )
+
 
   }
 

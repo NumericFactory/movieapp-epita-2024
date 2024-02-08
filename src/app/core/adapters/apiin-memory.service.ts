@@ -29,6 +29,10 @@ export class APIInMemoryService implements APIExternalMoviesGateway {
     return of(movie);
   }
 
+  getNextMoviesFromApi(): Observable<MovieModel[]> {
+    return of(this.movies);
+  }
+
   getTvShowFromApi(): Observable<TvShowModel[]> {
     return of(this.tvShows)
 

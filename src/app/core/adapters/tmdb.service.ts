@@ -12,6 +12,8 @@ import { APIExternalMoviesGateway } from '../ports/api-external-movies.gateway';
 })
 export class TMDBService implements APIExternalMoviesGateway {
 
+  moviesPageNumber = 1;
+
   private TMDB_URL: string = environment.TMDB_API_URL;
 
   /* on crée un Behabior Subject qui sert de store pour nos MovieModel */
@@ -44,7 +46,7 @@ export class TMDBService implements APIExternalMoviesGateway {
    */
   getMoviesFromApi(): Observable<MovieModel[]> {
     if (this.movies$$.getValue().length > 0) {
-      return this.movies$$.asObservable()
+      return this.movies$$.asObservable();
     }
     else {
       const ENDPOINT = `/discover/movie`;
@@ -65,6 +67,35 @@ export class TMDBService implements APIExternalMoviesGateway {
 
       return this.movies$$.asObservable()
     }
+
+  }
+
+
+  getNextMoviesFromApi(): Observable<MovieModel[]> {
+    this.moviesPageNumber++;
+
+    const ENDPOINT = `/discover/movie`;
+    let options = {
+      params: { language: 'fr', page: this.moviesPageNumber++ }
+    }
+
+    this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map((response: any) =>
+          response.results.map(
+            (movieFromApi: any) => new MovieModel(movieFromApi)
+          )
+        )
+      )
+      //fairela request HTTP
+      .subscribe((response: MovieModel[]) => {
+        let movies = this.movies$$.getValue();
+        let newMovies = [...movies, ...response];
+        this.movies$$.next(newMovies);
+      })
+
+    return this.movies$$.asObservable()
+
 
   }
 
