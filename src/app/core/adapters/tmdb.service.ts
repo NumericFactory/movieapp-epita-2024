@@ -5,11 +5,12 @@ import { MovieModel } from '../models/movie.model';
 import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
 import { SearchModel } from '../models/search.model';
+import { APIExternalMoviesGateway } from '../ports/api-external-movies.gateway';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TMDBService {
+export class TMDBService implements APIExternalMoviesGateway {
 
   private TMDB_URL: string = environment.TMDB_API_URL;
 
