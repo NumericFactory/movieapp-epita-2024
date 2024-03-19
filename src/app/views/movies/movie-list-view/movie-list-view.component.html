@@ -1,16 +1,22 @@
-<div class="row g-4 p-5">
-    <div class="d-flex d-flex align-items-center">
-        <h1>Films</h1>
+<div class="movies-content" id="movies">
+    <div class="container">
 
-        <app-dropdown (OnSelectItemEvent)="selectGenre($event)" [items]="genres"></app-dropdown>
+        <div class="block-title">
+            <h2 class="label">Films</h2>
+            <app-dropdown (OnSelectItemEvent)="selectGenre($event)" [items]="genres"></app-dropdown>
+        </div>
 
+        <button (click)="confirmDeleteAction()">Supprimer</button>
+
+        <div class="movies-details">
+
+            @for (itemMovie of movies$ | async ; track itemMovie.id) {
+            <div class="animate__animated animate__fadeIn">
+                <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
+            </div>
+            }
+
+        </div>
+        <app-actionbar></app-actionbar>
     </div>
-    <!-- on itere une .col par movie-->
-    @for (itemMovie of movies$ | async ; track itemMovie.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
-        <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
-    </div>
-    }
-
-    <app-actionbar></app-actionbar>
 </div>

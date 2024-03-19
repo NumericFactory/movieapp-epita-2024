@@ -1,25 +1,21 @@
 <!-- <app-navbar> -->
 <app-navbar></app-navbar>
 
-<div class="container-fluid py-5">
 
-  <!-- <app-movie-list-view> --->
-  <!-- <app-tv-list-view></app-tv-list-view> -->
-
+<div class="block-view">
+  @if(isLoading | async) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
   <router-outlet></router-outlet>
+</div>
 
-
-  <!-- 
+<!-- 
     Le routing (la navigation) consiste à afficher un component 
-    ou un autre de manière selective SELON
-    -> le changement d'URL 
+    ou un autre de manière selective SELON le changement d'URL 
 
     routes = [
       { path: '', component: MovieListView },
       { path: 'tv', component: TvListView },
       { path: 'user-profil', component: UserProfile },
     ]
-   
   -->
-
-</div>

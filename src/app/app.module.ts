@@ -27,12 +27,21 @@ import { ClickoutsideDirective } from './shared/directives/clickoutside.directiv
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogContent, MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { APIExternalMoviesGateway as APIExternalMoviesGateway } from './core/ports/api-external-movies.gateway';
 import { TMDBService } from './core/adapters/tmdb.service';
-import { APIInMemoryService } from './core/adapters/apiin-memory.service';
+import { APIInMemoryService } from './core/adapters/api-in-memory.service';
+import { DialogConfirmComponent } from './shared/components/ui/dialog-confirm/dialog-confirm.component';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthGateway } from './core/ports/auth.gateway';
+import { AuthService } from './core/adapters/auth.service';
+import { APIGateway } from './core/ports/api.gateway';
+import { ApiService } from './core/adapters/api.service';
+import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 
 
 @NgModule({
@@ -56,7 +65,8 @@ import { APIInMemoryService } from './core/adapters/apiin-memory.service';
     ActionbarComponent, SearchbarComponent, CardComponent, DropdownComponent,
     // pipes & directives
     PrintdurationPipe,
-    ClickoutsideDirective
+    ClickoutsideDirective,
+    DialogConfirmComponent
   ],
 
   imports: [
@@ -64,22 +74,39 @@ import { APIInMemoryService } from './core/adapters/apiin-memory.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatDialogContent,
+    MatButtonModule,
+    MatProgressBarModule
   ],
 
   providers: [
-    // Ici on indique à angular  APIAPIExternalMoviesGateway va instancier TMDBService
-    { provide: APIExternalMoviesGateway, useClass: TMDBService },
-    //{ provide: APIExternalMoviesGateway, useClass: APIInMemoryService },
+    /*  
+      Pattern PORT/ADAPTER
+    */
+
+    { provide: APIExternalMoviesGateway, useClass: TMDBService }, // useClass: APIInMemoryService
+    { provide: AuthGateway, useClass: AuthService },
+    { provide: APIGateway, useClass: ApiService },
 
 
-    // interceptor pour ajouter un token à la request
+    /*
+      Les interceptorrs : 
+      * pour ajouter un token à la request
+      * pour traiter les retours erreurs HTTP (400,401,403,500,..)
+      * pour gérer un loader
+    */
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
     },
-    // interceptor pour traiter les erreurs HTTP (401, 403, 404, 400, 500)
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

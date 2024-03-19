@@ -1,33 +1,39 @@
-<!-- searchbar -->
-<app-searchbar (onResultsEvent)="getSearchResults($event)" class="animate__animated animate__fadeInUp"></app-searchbar>
+<div class="container">
 
-<!-- Afficher les resultats -->
-<div class="row mt-5">
+    <!-- searchbar -->
+    <app-searchbar (onResultsEvent)="getSearchResults($event)"
+        class="animate__animated animate__fadeInUp"></app-searchbar>
 
-    @for(result of results; track result.id) {
-    <div class="col-12 col-md-4 col-xxl-2 animate__animated animate__fadeIn">
+    <!-- Afficher les resultats -->
+    <div class="movies-details">
+        @for(result of results; track result.id) {
+        <div class="animate__animated animate__fadeIn">
 
-        @switch (result.media_type) {
-        @case ('movie') {
-        <app-card [routerLink]="['/movies', result.id]" [item]="result"></app-card>
+            @switch (result.media_type) {
+            @case ('movie') {
+            <app-card [landscape]="true" [routerLink]="['/movies', result.id]" [item]="result"></app-card>
+            }
+            @case ('tv') {
+            <app-card [landscape]="true" [routerLink]="['/tv', result.id]" [item]="result"></app-card>
+            }
+            @case ('person') {
+            <app-card [routerLink]="['/person', result.id]" [item]="result"></app-card>
+            }
+
+            }
+
+
+        </div>
+        <!-- Template d'affichage si pas de résultat -->
+        } @empty() {
+        <div class="d-flex justify-content-center">
+            <p>En attente de votre saisie...</p>
+
+        </div>
         }
-        @case ('tv') {
-        <app-card [routerLink]="['/tv', result.id]" [item]="result"></app-card>
-        }
-        @case ('person') {
-        <app-card [routerLink]="['/person', result.id]" [item]="result"></app-card>
-        }
-
-        }
-
 
     </div>
-    <!-- Template d'affichage si pas de résultat -->
-    } @empty() {
-    <div class="d-flex justify-content-center">
-        <p>En attente de votre saisie...</p>
 
-    </div>
-    }
+
 
 </div>

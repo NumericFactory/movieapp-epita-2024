@@ -6,6 +6,7 @@ import { TvShowModel } from '../models/tv-show.model';
 import { environment } from '../../../environments/environment.development';
 import { SearchModel } from '../models/search.model';
 import { APIExternalMoviesGateway } from '../ports/api-external-movies.gateway';
+import { MovieTeam, PeopleModel } from '../models/people.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class TMDBService implements APIExternalMoviesGateway {
   private searchPageNumber = 1;
   private searchResults$$ = new BehaviorSubject<SearchModel[]>([]);
   public searchResults$ = this.searchResults$$.asObservable();
+
+
+  private allMovieCredits$$ = new BehaviorSubject<MovieTeam>({ actors: [], directors: [] });
+  public allMovieCredits$ = this.allMovieCredits$$.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -70,15 +75,42 @@ export class TMDBService implements APIExternalMoviesGateway {
 
   }
 
-
-  getNextMoviesFromApi(): Observable<MovieModel[]> {
-    this.moviesPageNumber++;
-
+  getMovieCreditsFromApi(): void {
     const ENDPOINT = `/discover/movie`;
     let options = {
-      params: { language: 'fr', page: this.moviesPageNumber++ }
+      params: { language: 'fr' }
     }
 
+    this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map((response: any) => {
+          let actors = response.cast.map(
+            (actorFromApi: any) => new PeopleModel(actorFromApi)
+          )
+          let directors = response.crew
+            .filter((people: any) => people.department === 'Directing' && people.job === 'Director')
+            .map((director: any) => new PeopleModel(director));
+          let people = { actors, directors };
+          return people
+        })
+      )
+      .subscribe((response: MovieTeam) => this.allMovieCredits$$.next(response));
+  }
+
+
+
+
+
+
+
+
+
+  getPrevMoviesFromApi(): Observable<MovieModel[]> {
+    this.moviesPageNumber--;
+    const ENDPOINT = `/discover/movie`;
+    let options = {
+      params: { language: 'fr', page: this.moviesPageNumber }
+    }
     this.http.get(this.TMDB_URL + ENDPOINT, options)
       .pipe(
         map((response: any) =>
@@ -89,8 +121,38 @@ export class TMDBService implements APIExternalMoviesGateway {
       )
       //fairela request HTTP
       .subscribe((response: MovieModel[]) => {
-        let movies = this.movies$$.getValue();
-        let newMovies = [...movies, ...response];
+        //let movies = this.movies$$.getValue();
+        let newMovies = [...response];
+        this.movies$$.next(newMovies);
+      })
+
+    return this.movies$$.asObservable()
+  }
+
+
+  getNextMoviesFromApi(pageNumber?: number): Observable<MovieModel[]> {
+    if (!pageNumber) {
+      this.moviesPageNumber++;
+    }
+    else {
+      this.moviesPageNumber = pageNumber;
+    }
+    const ENDPOINT = `/discover/movie`;
+    let options = {
+      params: { language: 'fr', page: this.moviesPageNumber }
+    }
+    this.http.get(this.TMDB_URL + ENDPOINT, options)
+      .pipe(
+        map((response: any) =>
+          response.results.map(
+            (movieFromApi: any) => new MovieModel(movieFromApi)
+          )
+        )
+      )
+      //fairela request HTTP
+      .subscribe((response: MovieModel[]) => {
+        //let movies = this.movies$$.getValue();
+        let newMovies = [...response];
         this.movies$$.next(newMovies);
       })
 

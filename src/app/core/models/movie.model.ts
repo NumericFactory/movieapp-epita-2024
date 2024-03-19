@@ -1,6 +1,5 @@
 import { Review } from "./review.model";
 
-
 interface Genre {
     id: number,
     name: string

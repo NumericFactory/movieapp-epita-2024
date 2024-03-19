@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../shared/services/user.service';
+import { AuthGateway } from '../../../core/ports/auth.gateway';
+import { PostCredentialsDTO } from '../../../core/dto/auth.dto';
 
 @Component({
   selector: 'app-login-view',
@@ -11,7 +13,7 @@ export class LoginViewComponent {
   userLoginForm!: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor(private _fb: FormBuilder, private _userSvc: UserService) { }
+  constructor(private _fb: FormBuilder, private _auth: AuthGateway) { }
 
   ngOnInit() {
     /**
@@ -39,8 +41,9 @@ export class LoginViewComponent {
    */
   onSubmitUserLoginForm(ev: Event): void {
     ev.preventDefault();
+    let credentials: PostCredentialsDTO = this.userLoginForm.value;
     if (this.userLoginForm.valid) {
-      this._userSvc.loginUser(this.userLoginForm.value).subscribe();
+      this._auth.login(credentials).subscribe();
     }
   }
 

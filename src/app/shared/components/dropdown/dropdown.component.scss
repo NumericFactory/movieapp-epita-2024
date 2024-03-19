@@ -16,24 +16,24 @@ button {
     border: none;
     padding: 0px 15px 0px 16px;
     height: 36px;
-    width: 150px;
+    width: 155px;
     outline: 0px !important;
     font-weight: 600;
     position: relative;
 }
 
 button:hover {
-    background-color: #272727;
+    background-color: rgb(50 69 87);
 }
 
 ul {
-    background-color: rgb(34, 33, 33);
+    background-color: rgb(23 32 42);
     padding: 3px 0px;
     position: absolute;
     top: 45px;
     z-index: 999;
     width: 150px;
-    border: 1px solid #545454;
+    border: 1px solid #43505c;
 }
 
 ul li {
@@ -41,6 +41,7 @@ ul li {
     padding: 2px 13px;
     text-transform: uppercase;
     font-size: .9rem;
+    color: #fff;
 
 }
 

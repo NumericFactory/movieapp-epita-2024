@@ -4,6 +4,10 @@ import { MovieModel } from '../../../core/models/movie.model';
 import { Observable, Subscription } from 'rxjs';
 import { Genre, genresMovie } from '../../../shared/data/genres.data';
 import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfig } from '@angular/cdk/dialog';
+import { DialogConfirmComponent } from '../../../shared/components/ui/dialog-confirm/dialog-confirm.component';
+import { ModalService } from '../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-movie-list-view',
@@ -18,7 +22,8 @@ export class MovieListViewComponent {
 
   constructor(
     // private _TMDBSvc: TMDBService
-    private _TMDBSvc: APIExternalMoviesGateway
+    private _TMDBSvc: APIExternalMoviesGateway,
+    private _modalSvc: ModalService
   ) { }
   /**
      * getMoviesFromApi()
@@ -35,6 +40,13 @@ export class MovieListViewComponent {
 
   ngOnInit() {
     this._TMDBSvc.getMoviesFromApi()
+  }
+
+  confirmDeleteAction() {
+    this._modalSvc.confirmDialog('Supprimer ce film')
+      .subscribe((isConfirmed: boolean) => {
+        isConfirmed ? console.log("je supprime") : console.log("je supprime pas");
+      })
   }
 
   selectGenre(genre: Genre) {

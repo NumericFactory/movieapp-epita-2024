@@ -8,7 +8,7 @@ import { AlertService } from '../services/alert.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  MY_API = environment.API_BASE_URL
+  MY_API = environment.API_URL
 
   constructor(private _route: Router, private _alert: AlertService) { }
 

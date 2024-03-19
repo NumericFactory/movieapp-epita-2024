@@ -4,6 +4,7 @@ import { debounceTime, filter, switchMap } from 'rxjs';
 import { TMDBService } from '../../../core/adapters/tmdb.service';
 import { SearchModel } from '../../../core/models/search.model';
 import { APIExternalMoviesGateway } from '../../../core/ports/api-external-movies.gateway';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchbar',
@@ -16,7 +17,7 @@ export class SearchbarComponent {
   results!: SearchModel[];
   @Output() onResultsEvent = new EventEmitter()
 
-  constructor(private _TMDBSvc: APIExternalMoviesGateway) { }
+  constructor(private _TMDBSvc: APIExternalMoviesGateway, private _router: Router) { }
 
   ngOnInit() {
     // 1 traiter la saisie du user
@@ -35,8 +36,8 @@ export class SearchbarComponent {
         this.results = data;
         this.onResultsEvent.emit(data)
       })
-
   }
+
 
 
 

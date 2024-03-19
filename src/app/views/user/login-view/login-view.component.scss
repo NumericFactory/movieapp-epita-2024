@@ -1,0 +1,99 @@
+.error {
+    color: #ffe3c8;
+    font-size: 90%;
+}
+
+.form-container .form-control {
+    margin-bottom: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #17202a;
+    padding-top: 100px;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    background: #917db8;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.6);
+}
+
+.content {
+    padding: 2rem;
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.6rem 2.8rem;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.input-group .error {
+    margin-top: 0px
+}
+
+.icons {
+    position: relative;
+    color: #388e3c;
+    font-size: 1.8rem;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    top: 06px;
+}
+
+.container .content form button {
+    padding: 0.5rem 2rem;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: #bd2e99;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+.container .content form button:hover {
+    background: #814872;
+    padding: 0.5rem 2.5rem;
+}
+
+.extra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.6rem 0rem;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}

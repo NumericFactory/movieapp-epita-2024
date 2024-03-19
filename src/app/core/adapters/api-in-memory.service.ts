@@ -21,6 +21,10 @@ export class APIInMemoryService implements APIExternalMoviesGateway {
     return of(this.movies);
   }
 
+  getPrevMoviesFromApi(): Observable<MovieModel[]> {
+    return of(this.movies);
+  }
+
   getMovieFromApi(id: string): Observable<MovieModel> {
     let movie = this.movies.find(movie => movie.id.toString() === id);
     if (!movie) {

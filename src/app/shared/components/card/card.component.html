@@ -1,13 +1,9 @@
-<div class="card">
-
-    @if(item.image_landscape) {
-    <img [src]="getFullImageUrl(item.image_landscape)" [alt]="item.titre">
-    } @else {
-    <img src="https://place-hold.it/500x281/a903e9/fff?text=image non disponible&fontsize=25&bold"
+<div class="movies">
+    @if(item.image_portrait || item.image_landscape ) {
+    <img [src]="getFullImageUrl(item)" alt="" />
+    }
+    @else {
+    <img src="https://place-hold.it/500x750/a903e9/fff?text=image non disponible&fontsize=25&bold"
         [alt]="'Pas dìmage disponible: ' + item.titre">
     }
-
-    <div class="card-body">
-        <h2 class="card-title">{{item.titre | uppercase }}</h2>
-    </div>
 </div>

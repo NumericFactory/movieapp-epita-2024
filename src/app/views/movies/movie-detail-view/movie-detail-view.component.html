@@ -1,17 +1,17 @@
 @if(movie$ | async; as movie) {
 
-<div class="container-fluid p-5">
+<div class="container">
 
-    <div class="d-flex align-items-center">
-        <button (click)="location.back()" class="btn btn-goback">
-            <i class="bi bi-arrow-left"></i>
+    <div class="title-block">
+        <button (click)="location.back()" id="left" class="arrow left-arrow">
+            <i class="fas fa-arrow-left"></i>
         </button>
         <h1>{{movie.titre}}</h1>
     </div>
 
     <div class="row g-4 animate__animated animate__fadeIn">
 
-        <div class="col-12 col-xl-6">
+        <div class="video-block">
 
             @if(movie.video) {
             <!-- Integration iframe Ytube-->
@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="col-12 col-xl-6">
+        <div class="text-block">
             <!-- contenu details-->
             <h2>Date de sortie</h2>
             <p>{{movie.date | date:'dd/MM/yyyy'}}</p>

@@ -1,26 +1,40 @@
-<div class="row justify-content-center p-5 animate__animated animate__fadeIn">
+<div class="d-flex">
 
-    <div class="col-12 col-lg-6 col-xl-4">
-        <h1>Créer un compte</h1>
+    <!-- <a href="index.html">
+        <div class="logo">
+            <img src="assets/logo.png" alt="">
+        </div>
+    </a> -->
+    <div class="container">
+        <div class="content">
+            <h2>Créer un compte</h2>
+            <form (submit)="onSubmitUserRegisterForm($event)" [formGroup]="userForm">
 
-        <form (submit)="onSubmitUserRegisterForm($event)" [formGroup]="userForm">
+                <div class="input-group">
+                    <input type="text" formControlName="username" type="text" placeholder="E-mail ou nom d'utilisateur">
+                    <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
+                    @if(userForm.controls['username'].hasError('minlength') && userForm.controls['username'].touched) {
+                    {{userForm.controls['username'].touched}}
+                    <div class="form-text error">Le champ est requis - min 2 car. max 10 car.</div>
+                    }
+                </div>
 
-            <label class="form-label">Pseudo</label>
-            <input class="form-control" formControlName="username" type="text">
-            <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
-            @if(userForm.controls['username'].errors && isSubmitted) {
-            <div class="form-text error">Le champ est requis - min 2 car. max 10 car.</div>
-            }
-
-            <label class="form-label">Mot de passe</label>
-            <input class="form-control" formControlName="password" type="password">
-            <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
-            @if(userForm.controls['password'].errors && isSubmitted) {
-            <div class="form-text error">Le champ est requis - min 2 car. max 5 car.</div>
-            }
-
-            <button class="btn btn-light mt-3">Créer</button>
-        </form>
+                <div class="input-group">
+                    <input type="password" formControlName="password" placeholder="Mot de passe">
+                    <!-- paragraphe erreur en testant si :  instanceDeFormControl['username'].errors -->
+                    @if(userForm.controls['password'].errors && isSubmitted) {
+                    <div class="form-text error">Le champ est requis - min 2 car. max 5 car.</div>
+                    }
+                </div>
+                <div class="extra">
+                    <button>Créer mon compte</button>
+                </div>
+                <p>
+                    Vous avez déjà un compte ?
+                    <a routerLink="/login">Connectez-vous</a>
+                </p>
+            </form>
+        </div>
     </div>
 
 </div>

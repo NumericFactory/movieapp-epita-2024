@@ -12,7 +12,7 @@ interface ResponseWithToken {
 })
 export class UserService {
 
-  MYAPI_URL = environment.API_BASE_URL;
+  MYAPI_URL = environment.API_URL;
 
   constructor(private http: HttpClient) { }
 

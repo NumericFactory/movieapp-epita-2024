@@ -1,21 +1,65 @@
-<div class="row g-4 p-5">
+<!-- slider-->
+<header class="slider" [style.background-image]="getFullImageUrl(sliders[activeSlide].image_landscape)">
+    <div class="slider-container" *ngIf="movies.length>0">
+        @for (itemMovie of sliders; track itemMovie.id; let i = $index) {
+        <div class="slide" [class.active]="activeSlide===i"
+            [style.background-image]="getFullImageUrl(itemMovie.image_landscape)">
 
-    <h1>Accueil</h1>
-    <!-- on itere une .col par movie-->
+            <div class="slider-content active">
+                <h2 class="movies-title">{{itemMovie.titre}}</h2>
+                <p class="movies_short_details">
+                    {{itemMovie.resume}}
+                </p>
+                <div class="m_details">
+                    <!-- <p class="category">Action</p>
+                    <p class="category">Trhiller</p> -->
+                    <!-- <p class="year">{{itemMovie.date | date:'yyyy'}}</p> -->
+                    <button type="button">
+                        <i class="fas fa-circle-play"></i>Regarder
+                    </button>
+                </div>
 
+            </div>
+        </div>
+        }
 
-
-    <h3>Films</h3>
-    @for (itemMovie of movies; track itemMovie.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
-        <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
+        <button (click)="previousSlide()" class="arrow left-arrow" id="left">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button (click)="nextSlide()" class="arrow right-arrow" id="right">
+            <i class="fas fa-arrow-right"></i>
+        </button>
     </div>
-    }
+</header>
 
-    <h3>Séries</h3>
-    @for (itemTvSHow of tv; track itemTvSHow.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xxl-2 animate__animated animate__fadeIn">
-        <app-card [routerLink]="['/tv', itemTvSHow.id]" [item]="itemTvSHow"></app-card>
+<!-- cards movies-->
+<div class="movies-content" id="movies">
+    <div class="container">
+        <h2 class="label">Par ici les nouveautés</h2>
+        <div class="movies-details">
+
+            @for (itemMovie of movies; track itemMovie.id) {
+            <div class="animate__animated animate__fadeIn">
+                <app-card [routerLink]="['/movies', itemMovie.id]" [item]="itemMovie"></app-card>
+            </div>
+            }
+
+        </div>
     </div>
-    }
+</div>
+
+<!-- pagination -->
+<div class="container">
+    <div class="paginations">
+        <ul>
+            <li (click)="findPrevMoviesAction()">Previous</li>
+
+            <li *ngFor="let page of pagination" (click)="findNextMoviesAction(page)">
+                {{page}}
+            </li>
+
+
+            <li (click)="findNextMoviesAction()">Next</li>
+        </ul>
+    </div>
 </div>

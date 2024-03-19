@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ];
   TMDB_URL = environment.TMDB_API_URL;
   TMDB_TOKEN = environment.TMDB_TOKEN;
-  MYAPI_URL = environment.API_BASE_URL;
+  MYAPI_URL = environment.API_URL;
   USER_TOKEN = this._userSvc.getToken();
 
   constructor(private _userSvc: UserService) { }

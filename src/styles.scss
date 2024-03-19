@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 // importer bootstrap
-@import 'bootstrap/dist/css/bootstrap.min.css';
+// @import 'bootstrap/dist/css/bootstrap-grid.min.css';
 @import 'animate.css/animate.css';
 @import 'bootstrap-icons/font/bootstrap-icons.min.css';
 // @import '@angular/material/prebuilt-themes/indigo-pink.css';
@@ -22,4 +22,413 @@ body {
 
 .showbar {
     z-index: 9999999 !important;
+}
+
+/* CSS global Angelique*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Ruda:wght@400;600;700&display=swap");
+
+:root {
+    --primary-color: #17202a;
+    --secondary-color: #273746;
+    --light-gray-color: #ddd;
+    --white-color: #fff;
+    --purple-color: #423693;
+    --purple_light-color: #917db8;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.label {
+    background: var(--secondary-color);
+    color: var(--light-gray-color);
+    padding: 0.5rem;
+    border-left: 7px var(--purple_light-color) solid;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+
+.menus {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+
+.menus .logo img {
+    width: 167px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav ul li a {
+    color: var(--light-gray-color);
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+nav ul li a.active:before {
+    transform: scaleX(1);
+    opacity: 1 !important;
+}
+
+nav ul li a:before {
+    content: "";
+    width: auto;
+    height: 3px;
+    background: linear-gradient(45deg, #009dff, #ff00ee);
+    position: absolute;
+    transform: scaleX(0);
+    visibility: visible;
+    opacity: 0 !important;
+    bottom: 3px;
+    left: 16px;
+    right: 16px;
+    transform-origin: left center;
+    transition-duration: .5s;
+}
+
+#form input {
+    width: 650px;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding: 0.8rem 1.5rem;
+    font-family: inherit;
+    background: var(--light-gray-color);
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    /* background-image: url("../img/img-1.jpg"); */
+    transition: all 0.5s ease-in-out;
+}
+
+header.slider {
+    // transform: translateY(-124px);
+    margin-top: -124px;
+}
+
+.menus.sticky {
+    background-color: rgba(0, 0, 0, 0.16);
+    color: var(--white-color);
+}
+
+body {
+    height: 100vh;
+    font-family: "poppins", sans-serif;
+    background: var(--primary-color);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to top, #000000, rgba(37, 37, 37, 0.45));
+}
+
+.slider-container {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) 0 3px 6px rgba(0, 0, 0, 0.23);
+    height: 70vh;
+    width: 70vw;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.slide {
+    opacity: 0;
+    transform: translateX(-25%);
+    height: 100vh;
+    width: 100vw;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: -15vh;
+    left: -15vw;
+    z-index: 1;
+    transition: all 1s ease-in;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(-0%);
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to top, #000000, rgb(37 37 37 / 45%));
+    z-index: -1;
+}
+
+.arrow {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.23);
+    color: #fff;
+    padding: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+.arrow i {
+    font-size: 1.5rem;
+}
+
+.arrow:focus {
+    outline: none;
+}
+
+.left-arrow {
+    left: 0px;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+.slider-content {
+    opacity: 0;
+    position: relative;
+    top: 67%;
+    left: 65%;
+    transform: translate(-0%, -81%);
+    padding: 4rem;
+    transition: all 0.7s ease-in;
+}
+
+.slider-content.active {
+    transform: translate(-49%, -82%);
+    opacity: 1;
+}
+
+.slider-content h2 {
+    color: var(--white-color);
+    font-size: 3rem;
+}
+
+.slider-content .movies_short_details {
+    color: var(--white-color);
+    padding: 1rem;
+    width: 50%;
+}
+
+.slider-content .m_details {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    margin-left: 1rem;
+}
+
+.m_details .category {
+    color: var(--white-color);
+    background: #bd2e99;
+    padding: 0.5rem;
+    border-radius: 20px;
+}
+
+.m_details .year {
+    color: var(--white-color);
+    background: var(--purple-color);
+    padding: 0.5rem;
+    border-radius: 20px;
+}
+
+.slider-content button {
+    padding: 0.7rem 2rem;
+    outline: none;
+    border: none;
+    margin: 2rem 1rem;
+    background: var(--purple_light-color);
+    color: var(--white-color);
+    font-family: inherit;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 26px;
+    cursor: pointer;
+}
+
+.slider-content button i {
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.label {
+    margin: 2rem 0;
+}
+
+.movies-details,
+.Tv-details {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 2rem;
+    justify-content: space-between;
+}
+
+.movies,
+.tvShows {
+    width: 325px;
+    height: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+    transition: all 0.4 ease-in;
+    background: var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.movies,
+.tvShows img {
+    display: block;
+    width: 325px;
+    height: 400px;
+}
+
+.movie-title {
+    font-size: 1;
+    font-family: inherit;
+    margin: 1rem 1rem;
+    color: var(--white-color);
+}
+
+.short-des {
+    display: flex;
+    justify-content: space-between;
+    background: var(--purple_light-color);
+    color: var(--white-color);
+    margin-top: 1rem;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(80%);
+}
+
+.short-des p {
+    padding: 0.5rem 0.5rem;
+}
+
+.movies:hover,
+.tvShows:hover .short-des {
+    transform: translateY(0%);
+    transition: all 0.5s ease-in;
+}
+
+/* pagination */
+.paginations {
+    padding: 4rem 0;
+}
+
+.paginations ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.paginations ul li {
+    margin: 0 0.7rem;
+    box-shadow: 0 0 10px var(--secondary-color);
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in;
+    color: #bd2e99;
+}
+
+.paginations ul li:nth-child(1) {
+    margin-left: 0;
+}
+
+.paginations ul li:active {
+    transform: scale(1.5);
+}
+
+a {
+    color: var(--purple_light-color);
+}
+
+/* Responsive*/
+
+@media screen and (max-width:1500px) {
+    .container {
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .container {
+        width: 992px;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
 }

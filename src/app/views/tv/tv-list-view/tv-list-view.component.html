@@ -1,14 +1,18 @@
-<div class="row g-4 p-5">
-    <div class="d-flex d-flex align-items-center">
-        <h1>Tv & séries</h1>
+<div class="movies-content" id="movies">
+    <div class="container">
+        <div class="block-title">
+            <h2 class="label">Tv & series</h2>
+            <app-dropdown (OnSelectItemEvent)="selectGenre($event)" [items]="genres"></app-dropdown>
+        </div>
+        <div class="movies-details">
 
-        <app-dropdown (OnSelectItemEvent)="selectGenre($event)" [items]="genres" />
+            @for (itemTvShow of tvshows$ | async; track itemTvShow.id) {
+            <div class="animate__animated animate__fadeIn">
+                <app-card [routerLink]="['/tv', itemTvShow.id]" [item]="itemTvShow"></app-card>
+            </div>
+            }
 
+        </div>
+        <app-actionbar></app-actionbar>
     </div>
-    <!-- on itere une .col par movie-->
-    @for (itemTvShow of tvshows$ | async; track itemTvShow.id) {
-    <div class="col-12 col-md-6 col-lg-4 col-xl-3 animate__animated animate__fadeIn">
-        <app-card [routerLink]="['/tv', itemTvShow.id]" [item]="itemTvShow"></app-card>
-    </div>
-    }
 </div>
