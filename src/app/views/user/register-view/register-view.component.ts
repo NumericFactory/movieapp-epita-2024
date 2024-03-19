@@ -14,7 +14,6 @@ export class RegisterViewComponent {
 
   constructor(private _fb: FormBuilder, private _userSvc: UserService) { }
 
-
   ngOnInit() {
     /**
      * Créer une instance de FormGroup
